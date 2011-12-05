@@ -7,8 +7,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>imibare</name>
-  <url>http://maven.apache.org</url>
+  <description>Number rendering library for English, Kinyarwanda and Kirundi</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,4 +21,8 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <organization>
+  	<name>Ijuru</name>
+  	<url>http://ijuru.com</url>
+  </organization>
 </project>
