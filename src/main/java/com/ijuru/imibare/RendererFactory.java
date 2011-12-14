@@ -20,6 +20,7 @@
 package com.ijuru.imibare;
 
 import com.ijuru.imibare.renderer.EnglishRenderer;
+import com.ijuru.imibare.renderer.FrenchRenderer;
 import com.ijuru.imibare.renderer.KinyarwandaRenderer;
 import com.ijuru.imibare.renderer.KirundiRenderer;
 import com.ijuru.imibare.renderer.Renderer;
@@ -37,6 +38,8 @@ public class RendererFactory {
 	public static Renderer getRenderer(String lang) throws UnsupportedLanguageException {
 		if (lang.equals("en"))
 			return new EnglishRenderer();
+		else if (lang.equals("fr"))
+			return new FrenchRenderer();
 		else if (lang.equals("rw"))
 			return new KinyarwandaRenderer();
 		else if (lang.equals("rn"))
