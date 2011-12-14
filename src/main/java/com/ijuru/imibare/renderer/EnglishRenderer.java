@@ -39,7 +39,7 @@ public class EnglishRenderer implements Renderer {
 	};
 	
 	private static final String[] TEENS = {
-		"", "eleven", "twelve", "thirteen", "forteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"		
+		"", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"		
 	};
 	
 	private static final String[] TENS = {

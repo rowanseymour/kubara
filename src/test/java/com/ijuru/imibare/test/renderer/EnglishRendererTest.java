@@ -19,27 +19,19 @@
 
 package com.ijuru.imibare.test.renderer;
 
+import java.io.IOException;
+
 import junit.framework.TestCase;
 
 import com.ijuru.imibare.renderer.EnglishRenderer;
-import com.ijuru.imibare.renderer.Renderer;
+import com.ijuru.imibare.test.TestUtils;
 
 /**
  * Test case for EnglishRenderer class
  */
 public class EnglishRendererTest extends TestCase {
 
-	public void testRender() {
-		Renderer renderer = new EnglishRenderer();
-		assertEquals("zero", renderer.render(0, 0));
-		assertEquals("one", renderer.render(1, 0));
-		assertEquals("fifteen", renderer.render(15, 0));
-		assertEquals("twenty three", renderer.render(23, 0));
-		assertEquals("one hundred and three", renderer.render(103, 0));
-		assertEquals("one hundred and forty five", renderer.render(145, 0));
-		assertEquals("seven thousand six hundred and ninety two", renderer.render(7692, 0));
-		assertEquals("eight million forty seven thousand six hundred and ninety two", renderer.render(8047692, 0));
-		assertEquals("negative forteen", renderer.render(-14, 0));
-		assertEquals("negative one thousand and sixty five", renderer.render(-1065, 0));
+	public void testRender() throws IOException {
+		TestUtils.runCases("/data-english.csv", new EnglishRenderer());
 	}
 }
