@@ -1,0 +1,15 @@
+#Zero
+0, 0, zero
+
+#Positives
+1, 0, one
+15, 0, fifteen
+23, 0, twenty three
+103, 0, one hundred and three
+145, 0, one hundred and forty five
+7692, 0, seven thousand six hundred and ninety two
+8047692, 0, eight million forty seven thousand six hundred and ninety two
+
+#Negatives
+-14, 0, negative fourteen
+-1065, 0, negative one thousand and sixty five
