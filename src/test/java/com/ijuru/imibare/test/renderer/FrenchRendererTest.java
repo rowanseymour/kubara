@@ -23,15 +23,15 @@ import java.io.IOException;
 
 import junit.framework.TestCase;
 
-import com.ijuru.imibare.renderer.EnglishRenderer;
+import com.ijuru.imibare.renderer.FrenchRenderer;
 import com.ijuru.imibare.test.TestUtils;
 
 /**
- * Test case for EnglishRenderer class
+ * Test case for FrenchRenderer class
  */
-public class EnglishRendererTest extends TestCase {
+public class FrenchRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-en.csv", new EnglishRenderer());
+		TestUtils.runCases("/data-fr.csv", new FrenchRenderer());
 	}
 }

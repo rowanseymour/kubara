@@ -31,11 +31,16 @@ import com.ijuru.imibare.Utils;
  */
 public class FrenchRenderer implements Renderer {
 	
-	private static final String CONJ_COMPONENT = " ";
-	private static final String CONJ_PART = " et ";
+	public static final int MALE = 0;
+	public static final int FEMALE = 1;
+	
+	private static final String CONJ_MINOR = "-";
+	private static final String CONJ_MAJOR = " et ";
+	
+	private static final String[] ONE = { "un", "une" };
 	
 	private static final String[] ONES = {
-		"", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf"    
+		"", "", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf"    
 	};
 	
 	private static final String[] TEENS = {
@@ -46,7 +51,7 @@ public class FrenchRenderer implements Renderer {
 		"", "dix", "vingt", "trente", "quarante", "cinquante", "soixante", "soixante-dix", "quatre-vingt", "quatre-vingt-dix"		
 	};
 	
-	private static final String NEGATIVE = "négative";
+	private static final String NEGATIVE = "négatifs";
 	private static final String ZERO = "zéro";
 	private static final String HUNDRED = "cent";
 	private static final String THOUSAND = "mille";
@@ -73,17 +78,25 @@ public class FrenchRenderer implements Renderer {
 		components.add(makeComponent(THOUSAND, bases.thousands));
 		components.add(makeComponent(HUNDRED, bases.hundreds));
 		
-		if (bases.tens == 1) {
+		if (bases.tens == 0) {
+			if (bases.ones == 1)
+				components.add(ONE[clazz]);
+			else
+				components.add(ONES[bases.ones]);
+		}
+		else if (bases.tens == 1) {
 			components.add(TEENS[bases.ones]);
-			components.add("");
 		}
 		else {
-			components.add(TENS[bases.tens]);
-			components.add(ONES[bases.ones]);
+			if (bases.ones == 1)
+				components.add(TENS[bases.tens] + CONJ_MAJOR + ONE[clazz]);
+			else
+				components.add(TENS[bases.tens] + CONJ_MINOR + ONES[bases.ones]);
 		}
 				
 		// Join components using conjunctions
-		return (bases.negative ? NEGATIVE + " " : "") + join(components);
+		// TODO negative adj needs to agree with singular/plural
+		return join(components) + (bases.negative ? " " + NEGATIVE : "");
 	}
 	
 	/**
@@ -95,7 +108,7 @@ public class FrenchRenderer implements Renderer {
 	protected String makeComponent(String base, int count) {
 		if (count == 0)
 			return "";
-		return render(count, 0) + CONJ_COMPONENT + base;
+		return render(count, 0) + " " + base;
 	}
 	
 	/**
@@ -111,18 +124,14 @@ public class FrenchRenderer implements Renderer {
 		for (String component : components)
 			comps.add(component);
 		
-		// Join tens and ones
-		String ones = comps.pop();
-		String tens = comps.pop();
-		String compMinor = (tens + CONJ_COMPONENT + ones).trim();
-		
-		// Join the other components
-		String compMajor = Utils.join(Utils.removeEmpty(comps), CONJ_COMPONENT);
+		// Join every but tens with spaces
+		String compMinor = comps.pop();
+		String compMajor = Utils.join(Utils.removeEmpty(comps), " ");		
 		
 		List<String> parts = new ArrayList<String>();
 		parts.add(compMajor);
 		parts.add(compMinor);
 		
-		return Utils.join(Utils.removeEmpty(parts), CONJ_PART);
+		return Utils.join(Utils.removeEmpty(parts), CONJ_MAJOR);
 	}
 }

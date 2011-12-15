@@ -1,0 +1,18 @@
+#Zero
+0, 0, zéro
+0, 1, zéro
+
+#Positives
+1, 0, un
+1, 1, une
+2, 0, deux
+2, 1, deux
+15, 0, quinze
+21, 0, vingt et un
+21, 1, vingt et une
+23, 0, vingt-trois
+103, 0, un cent et trois
+
+#Negatives
+-14, 0, quatorze négatifs
+-1065, 0, un mille soixante-cinq négatifs
