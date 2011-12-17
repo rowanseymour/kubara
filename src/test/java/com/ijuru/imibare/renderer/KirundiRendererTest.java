@@ -21,10 +21,9 @@ package com.ijuru.imibare.renderer;
 
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
 import com.ijuru.imibare.TestUtils;
-import com.ijuru.imibare.renderer.KirundiRenderer;
+
+import junit.framework.TestCase;
 
 /**
  * Test case for EnglishRenderer class

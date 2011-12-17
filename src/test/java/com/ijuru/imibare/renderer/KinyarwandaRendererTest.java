@@ -24,7 +24,6 @@ import java.io.IOException;
 import junit.framework.TestCase;
 
 import com.ijuru.imibare.TestUtils;
-import com.ijuru.imibare.renderer.KinyarwandaRenderer;
 
 /**
  * Test case for EnglishRenderer class

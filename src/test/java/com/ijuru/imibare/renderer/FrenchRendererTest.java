@@ -24,7 +24,6 @@ import java.io.IOException;
 import junit.framework.TestCase;
 
 import com.ijuru.imibare.TestUtils;
-import com.ijuru.imibare.renderer.FrenchRenderer;
 
 /**
  * Test case for FrenchRenderer class
