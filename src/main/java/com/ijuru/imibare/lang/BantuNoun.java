@@ -23,20 +23,36 @@ package com.ijuru.imibare.lang;
  * Basic Bantu noun which uses the 16 standard Bantu noun classes
  */
 public class BantuNoun extends Noun {
-	public int singularClass;
-	public int pluralClass;
+	protected int singularClazz;
+	protected int pluralClazz;
 	
 	/**
 	 * Constructs a basic Bantu word
-	 * @param singular the singular form
-	 * @param singularClass the singular class
-	 * @param plural the plural form
-	 * @param pluralClass the plural class
+	 * @param singularForm the singular form
+	 * @param singularClazz the singular class
+	 * @param pluralForm the plural form
+	 * @param pluralClazz the plural class
 	 */
-	public BantuNoun(String singular, int singularClass, String plural, int pluralClass) {
-		super(singular, plural);
+	public BantuNoun(String singularForm, int singularClazz, String pluralForm, int pluralClazz) {
+		super(singularForm, pluralForm);
 		
-		this.singularClass = singularClass;
-		this.pluralClass = pluralClass;
+		this.singularClazz = singularClazz;
+		this.pluralClazz = pluralClazz;
+	}
+
+	/**
+	 * Gets the singular class
+	 * @return the singular class
+	 */
+	public int getSingularClazz() {
+		return singularClazz;
+	}
+
+	/**
+	 * Gets the plural class
+	 * @return the plural class
+	 */
+	public int getPluralClazz() {
+		return pluralClazz;
 	}
 }

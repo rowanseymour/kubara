@@ -70,9 +70,9 @@ public abstract class RwandaRundiRenderer implements Renderer {
 		if (count == 0)
 			return "";
 		else if (count == 1)
-			return base.singular + " " + render(count, new NounAttributes(base.singularClass, Gender.UNSPECIFIED));
+			return base.getSingularForm() + " " + render(count, new NounAttributes(base.getSingularClazz(), Gender.UNSPECIFIED));
 		else
-			return base.plural + " " + render(count, new NounAttributes(base.pluralClass, Gender.UNSPECIFIED));
+			return base.getPluralForm() + " " + render(count, new NounAttributes(base.getPluralClazz(), Gender.UNSPECIFIED));
 	}
 
 	/**

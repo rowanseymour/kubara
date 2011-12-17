@@ -23,16 +23,32 @@ package com.ijuru.imibare.lang;
  * Basic noun with singular and plural forms
  */
 public class Noun {
-	public String singular;
-	public String plural;
+	protected String singularForm;
+	protected String pluralForm;
 	
 	/**
 	 * Constructs a noun
-	 * @param singular the singular form
- 	 * @param plural the plural form
+	 * @param singularForm the singular form
+ 	 * @param pluralForm the plural form
 	 */
-	public Noun(String singular, String plural) {
-		this.singular = singular;
-		this.plural = plural;
+	public Noun(String singularForm, String pluralForm) {
+		this.singularForm = singularForm;
+		this.pluralForm = pluralForm;
+	}
+	
+	/**
+	 * Gets the singular form
+	 * @return the form
+	 */
+	public String getSingularForm() {
+		return singularForm;
+	}
+	
+	/**
+	 * Gets the plural form
+	 * @return the form
+	 */
+	public String getPluralForm() {
+		return pluralForm;
 	}
 }
