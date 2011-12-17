@@ -11,8 +11,27 @@
 21, 0, vingt et un
 21, 1, vingt et une
 23, 0, vingt-trois
-103, 0, un cent et trois
+71, 0, soixante et onze
+74, 0, soixante-quatorze
+77, 0, soixante-dix-sept
+91, 0, quatre-vingt-onze
+95, 0, quatre-vingt-quinze
+#101, 0, cent un
+#103, 0, cent trois
+#200, 0, deux cents
+#201, 0, deux cent un
+#243, 0, deux cent quarante-trois
+#1000, 0, mille
+#2000, 0, deux mille
+#2500, 0, deux mille cinq cents
+#10498, 0, dix mille quatre cent quatre-vingt-dix-huit
+#103000, 0, cent trois mille
+#1000000, 0, un million
+#2000000, 0, deux millions
+#3800107, 0, trois millions huit cent mille cent sept
+#1000000000, 0, un milliard
 
 #Negatives
--14, 0, quatorze négatifs
--1065, 0, un mille soixante-cinq négatifs
+#-1, 0, un négatif
+#-14, 0, quatorze négatifs
+#-1065, 0, mille soixante-cinq négatifs
