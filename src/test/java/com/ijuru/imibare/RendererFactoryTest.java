@@ -19,47 +19,37 @@
 
 package com.ijuru.imibare;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.ijuru.imibare.lang.NounAttributes;
 import com.ijuru.imibare.renderer.EnglishRenderer;
 import com.ijuru.imibare.renderer.FrenchRenderer;
 import com.ijuru.imibare.renderer.KinyarwandaRenderer;
 import com.ijuru.imibare.renderer.KirundiRenderer;
 import com.ijuru.imibare.renderer.Renderer;
 
-/**
- * Factory class to create renderer instances
- */
-public class RendererFactory {
+import junit.framework.Assert;
+import junit.framework.TestCase;
 
-	private static final Map<String, Renderer> renderers = new HashMap<String, Renderer>();
-	
-	static {
-		registerRenderer("en", new EnglishRenderer());
-		registerRenderer("fr", new FrenchRenderer());
-		registerRenderer("rw", new KinyarwandaRenderer());
-		registerRenderer("rn", new KirundiRenderer());
+class TestRenderer implements Renderer {
+	@Override
+	public String render(long number, NounAttributes attributes) {
+		return "test";
 	}
+}
+
+/**
+ * Test case for RendererFactory class
+ */
+public class RendererFactoryTest extends TestCase {
 	
-	/**
-	 * Gets a renderer for the given language
-	 * @param lang the language, e.g. 'en'
-	 * @return the renderer
-	 */
-	public static Renderer getRenderer(String lang) throws UnsupportedLanguageException {
-		if (!renderers.containsKey(lang))
-			throw new UnsupportedLanguageException(lang);
-		
-		return renderers.get(lang);
+	public void testGetRenderer() throws UnsupportedLanguageException {
+		Assert.assertTrue(RendererFactory.getRenderer("en") instanceof EnglishRenderer);
+		Assert.assertTrue(RendererFactory.getRenderer("fr") instanceof FrenchRenderer);
+		Assert.assertTrue(RendererFactory.getRenderer("rw") instanceof KinyarwandaRenderer);
+		Assert.assertTrue(RendererFactory.getRenderer("rn") instanceof KirundiRenderer);
 	}
-	
-	/**
-	 * Registers a renderer for the given language
-	 * @param lang the language, e.g. 'en'
-	 * @param renderer the renderer
-	 */
-	public static void registerRenderer(String lang, Renderer renderer) {
-		renderers.put(lang, renderer);
+
+	public void testRegisterRenderer() throws UnsupportedLanguageException {
+		RendererFactory.registerRenderer("tt", new TestRenderer());
+		Assert.assertTrue(RendererFactory.getRenderer("tt") instanceof TestRenderer);
 	}
 }
