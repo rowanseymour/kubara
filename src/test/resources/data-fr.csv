@@ -1,37 +1,37 @@
 #Zero
-0, 0, zéro
-0, 1, zéro
+0, m, zéro
+0, f, zéro
 
 #Positives
-1, 0, un
-1, 1, une
-2, 0, deux
-2, 1, deux
-15, 0, quinze
-21, 0, vingt et un
-21, 1, vingt et une
-23, 0, vingt-trois
-71, 0, soixante et onze
-74, 0, soixante-quatorze
-77, 0, soixante-dix-sept
-91, 0, quatre-vingt-onze
-95, 0, quatre-vingt-quinze
-#101, 0, cent un
-#103, 0, cent trois
-#200, 0, deux cents
-#201, 0, deux cent un
-#243, 0, deux cent quarante-trois
-#1000, 0, mille
-#2000, 0, deux mille
-#2500, 0, deux mille cinq cents
-#10498, 0, dix mille quatre cent quatre-vingt-dix-huit
-#103000, 0, cent trois mille
-#1000000, 0, un million
-#2000000, 0, deux millions
-#3800107, 0, trois millions huit cent mille cent sept
-#1000000000, 0, un milliard
+1, m, un
+1, f, une
+2, m, deux
+2, f, deux
+15, m, quinze
+21, m, vingt et un
+21, f, vingt et une
+23, m, vingt-trois
+71, m, soixante et onze
+74, m, soixante-quatorze
+77, m, soixante-dix-sept
+91, m, quatre-vingt-onze
+95, m, quatre-vingt-quinze
+#101, m, cent un
+#103, m, cent trois
+#200, m, deux cents
+#201, m, deux cent un
+#243, m, deux cent quarante-trois
+#1000, m, mille
+#2000, m, deux mille
+#2500, m, deux mille cinq cents
+#10498, m, dix mille quatre cent quatre-vingt-dix-huit
+#103000, m, cent trois mille
+#1000000, m, un million
+#2000000, m, deux millions
+#3800107, m, trois millions huit cent mille cent sept
+#1000000000, m, un milliard
 
 #Negatives
-#-1, 0, un négatif
-#-14, 0, quatorze négatifs
-#-1065, 0, mille soixante-cinq négatifs
+#-1, m, un négatif
+#-14, m, quatorze négatifs
+#-1065, m, mille soixante-cinq négatifs

@@ -17,21 +17,21 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.test.renderer;
+package com.ijuru.imibare.renderer;
 
 import java.io.IOException;
 
 import junit.framework.TestCase;
 
-import com.ijuru.imibare.renderer.FrenchRenderer;
-import com.ijuru.imibare.test.TestUtils;
+import com.ijuru.imibare.TestUtils;
+import com.ijuru.imibare.renderer.KinyarwandaRenderer;
 
 /**
- * Test case for FrenchRenderer class
+ * Test case for EnglishRenderer class
  */
-public class FrenchRendererTest extends TestCase {
+public class KinyarwandaRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-fr.csv", new FrenchRenderer());
+		TestUtils.runCases("/data-rw.csv", new KinyarwandaRenderer());
 	}
 }

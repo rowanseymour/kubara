@@ -17,19 +17,33 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.renderer;
-
-import com.ijuru.imibare.lang.NounAttributes;
+package com.ijuru.imibare.lang;
 
 /**
- * Interface for a basic number renderer
+ * Noun gender
  */
-public interface Renderer {
+public enum Gender {
+	UNSPECIFIED,
+	MALE,
+	FEMALE,
+	NEUTER;
+	
 	/**
-	 * Renders the number into it's spoken form
-	 * @param number the number
-	 * @param the noun attributes
-	 * @return the spoken form
+	 * Parses a gender from a string
+	 * @param str the input string
+	 * @return the gender
 	 */
-	public String render(long number, NounAttributes attributes);
+	public static Gender parse(String str) {
+		if (str != null && str.length() == 1) {
+			switch (str.toLowerCase().charAt(0)) {
+			case 'm':
+				return MALE;
+			case 'f':
+				return FEMALE;
+			case 'n':
+				return NEUTER;
+			}
+		}
+		return UNSPECIFIED;
+	}
 }

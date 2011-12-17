@@ -17,17 +17,22 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.test;
+package com.ijuru.imibare;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 import junit.framework.Assert;
 
+import com.ijuru.imibare.lang.NounAttributes;
 import com.ijuru.imibare.renderer.Renderer;
 
+/**
+ * Helper class for unit testing
+ */
 public class TestUtils {
 	/**
 	 * Runs test cases from a CSV file
@@ -37,17 +42,17 @@ public class TestUtils {
 	 */
 	public static void runCases(String path, Renderer renderer) throws IOException {		
 		InputStream stream = TestUtils.class.getResourceAsStream(path);
-		BufferedReader in = new BufferedReader(new InputStreamReader(stream));
+		BufferedReader in = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
 		
 		String line = in.readLine();
 		while (line != null) {
 			if (line.trim().length() > 0 && line.charAt(0) != '#') {
 				String[] parts = line.trim().split(",");
 				int number = Integer.parseInt(parts[0].trim());
-				int clazz = Integer.parseInt(parts[1].trim());
+				NounAttributes attributes = NounAttributes.parse(parts[1].trim());
 				String result = parts[2].trim();
 				
-				Assert.assertEquals(result, renderer.render(number, clazz));
+				Assert.assertEquals(result, renderer.render(number, attributes));
 			}
 			
 			line = in.readLine();

@@ -19,17 +19,19 @@
 
 package com.ijuru.imibare.renderer;
 
-import com.ijuru.imibare.lang.NounAttributes;
+import java.io.IOException;
+
+import junit.framework.TestCase;
+
+import com.ijuru.imibare.TestUtils;
+import com.ijuru.imibare.renderer.FrenchRenderer;
 
 /**
- * Interface for a basic number renderer
+ * Test case for FrenchRenderer class
  */
-public interface Renderer {
-	/**
-	 * Renders the number into it's spoken form
-	 * @param number the number
-	 * @param the noun attributes
-	 * @return the spoken form
-	 */
-	public String render(long number, NounAttributes attributes);
+public class FrenchRendererTest extends TestCase {
+
+	public void testRender() throws IOException {
+		TestUtils.runCases("/data-fr.csv", new FrenchRenderer());
+	}
 }

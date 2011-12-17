@@ -25,16 +25,15 @@ import java.util.Stack;
 
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.Utils;
+import com.ijuru.imibare.lang.Gender;
+import com.ijuru.imibare.lang.NounAttributes;
 
 /**
  * Number renderer for French language (WIP)
  */
 public class FrenchRenderer implements Renderer {
 	
-	public static final int MALE = 0;
-	public static final int FEMALE = 1;
-	
-	private static final String CONJ_MINOR = "-";
+	//private static final String CONJ_MINOR = "";
 	private static final String CONJ_MAJOR = " et ";
 	
 	private static final String[] ONES = {
@@ -58,10 +57,10 @@ public class FrenchRenderer implements Renderer {
 	private static final String TRILLION = "trillion";
 
 	/**
-	 * @see com.ijuru.imibare.renderer.Renderer#render(int, int)
+	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
 	 */
 	@Override
-	public String render(long number, int clazz) {
+	public String render(long number, NounAttributes attributes) {
 		if (number == 0)
 			return ONES[0];
 		
@@ -77,7 +76,7 @@ public class FrenchRenderer implements Renderer {
 		components.add(makeComponent(HUNDRED, bases.hundreds));
 		
 		int upTo100 = bases.tens * 10 + bases.ones;
-		boolean feminize = clazz == FEMALE && bases.ones == 1;
+		boolean feminize = attributes != null && attributes.getGender() == Gender.FEMALE && bases.ones == 1;
 		
 		components.add(ONES[upTo100] + (feminize ? "e" : ""));
 				
@@ -95,7 +94,7 @@ public class FrenchRenderer implements Renderer {
 	protected String makeComponent(String base, int count) {
 		if (count == 0)
 			return "";
-		return render(count, 0) + " " + base;
+		return render(count, null) + " " + base;
 	}
 	
 	/**

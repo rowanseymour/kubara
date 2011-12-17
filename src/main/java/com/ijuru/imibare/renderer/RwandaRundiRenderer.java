@@ -25,6 +25,8 @@ import java.util.List;
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.Utils;
 import com.ijuru.imibare.lang.BantuNoun;
+import com.ijuru.imibare.lang.Gender;
+import com.ijuru.imibare.lang.NounAttributes;
 
 /**
  * Base class for number renderers for Rwanda-Rundi family of languages
@@ -35,10 +37,10 @@ public abstract class RwandaRundiRenderer implements Renderer {
 	private static final String CONJ_BEFORE_VOWEL = " n'";
 	
 	/**
-	 * @see com.ijuru.imibare.renderer.Renderer#render(int, int)
+	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
 	 */
 	@Override
-	public String render(long number, int clazz) {
+	public String render(long number, NounAttributes attributes) {
 		if (number == 0)
 			return getZeroWord();
 		
@@ -52,7 +54,7 @@ public abstract class RwandaRundiRenderer implements Renderer {
 		components.add(makeComponent(getThousandNoun(), bases.thousands));
 		components.add(getHundreds()[bases.hundreds]);
 		components.add(getTens()[bases.tens]);
-		components.add(getOnes()[clazz][bases.ones]);
+		components.add(getOnes()[attributes.getClazz()][bases.ones]);
 		
 		// Join components using Kinyarwanda conjunctions
 		return (bases.negative ? getNegativeWord() + " " : "") + join(components);
@@ -68,9 +70,9 @@ public abstract class RwandaRundiRenderer implements Renderer {
 		if (count == 0)
 			return "";
 		else if (count == 1)
-			return base.singular + " " + render(count, base.singularClass);
+			return base.singular + " " + render(count, new NounAttributes(base.singularClass, Gender.UNSPECIFIED));
 		else
-			return base.plural + " " + render(count, base.pluralClass);
+			return base.plural + " " + render(count, new NounAttributes(base.pluralClass, Gender.UNSPECIFIED));
 	}
 
 	/**

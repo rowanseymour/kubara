@@ -17,7 +17,7 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.test;
+package com.ijuru.imibare;
 
 import java.util.ArrayList;
 import java.util.List;

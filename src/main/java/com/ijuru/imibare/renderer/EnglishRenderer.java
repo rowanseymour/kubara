@@ -25,6 +25,7 @@ import java.util.Stack;
 
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.Utils;
+import com.ijuru.imibare.lang.NounAttributes;
 
 /**
  * Number renderer for English language
@@ -55,10 +56,10 @@ public class EnglishRenderer implements Renderer {
 	private static final String TRILLION = "trillion";
 
 	/**
-	 * @see com.ijuru.imibare.renderer.Renderer#render(int, int)
+	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
 	 */
 	@Override
-	public String render(long number, int clazz) {
+	public String render(long number, NounAttributes attributes) {
 		if (number == 0)
 			return ZERO;
 		
@@ -95,7 +96,7 @@ public class EnglishRenderer implements Renderer {
 	protected String makeComponent(String base, int count) {
 		if (count == 0)
 			return "";
-		return render(count, 0) + CONJ_COMPONENT + base;
+		return render(count, null) + CONJ_COMPONENT + base;
 	}
 	
 	/**
