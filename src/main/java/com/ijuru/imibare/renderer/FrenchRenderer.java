@@ -33,11 +33,8 @@ import com.ijuru.imibare.lang.NounAttributes;
  */
 public class FrenchRenderer implements Renderer {
 	
-	//private static final String CONJ_MINOR = "";
-	private static final String CONJ_MAJOR = " et ";
-	
 	private static final String[] ONES = {
-		"zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", 
+		"", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", 
 		"dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf",
 		"vingt", "vingt et un", "vingt-deux", "vingt-trois", "vingt-quatre", "vingt-cinq", "vingt-six", "vingt-sept", "vingt-huit", "vingt-neuf",
 		"trente", "trente et un", "trente-deux", "trente-trois", "trente-quatre", "trente-cinq", "trente-six", "trente-sept", "trente-huit", "trente-neuf",
@@ -49,6 +46,7 @@ public class FrenchRenderer implements Renderer {
 		"quatre-vingt-dix", "quatre-vingt-onze", "quatre-vingt-douze", "quatre-vingt-treize", "quatre-vingt-quatorze", "quatre-vingt-quinze", "quatre-vingt-seize", "quatre-vingt-dix-sept", "quatre-vingt-dix-huit", "quatre-vingt-dix-neuf"
 	};
 	
+	private static final String ZERO = "zéro";
 	private static final String NEGATIVE = "négatifs";
 	private static final String HUNDRED = "cent";
 	private static final String THOUSAND = "mille";
@@ -62,7 +60,7 @@ public class FrenchRenderer implements Renderer {
 	@Override
 	public String render(long number, NounAttributes attributes) {
 		if (number == 0)
-			return ONES[0];
+			return ZERO;
 		
 		// Break down number into bases used by French
 		DecimalBases bases = new DecimalBases(number, true);
@@ -94,6 +92,9 @@ public class FrenchRenderer implements Renderer {
 	protected String makeComponent(String base, int count) {
 		if (count == 0)
 			return "";
+		if (count == 1 && (base.equals("cent") || base.equals("mille")))
+			return base;	
+		
 		return render(count, null) + " " + base;
 	}
 	
@@ -118,6 +119,6 @@ public class FrenchRenderer implements Renderer {
 		parts.add(compMajor);
 		parts.add(compMinor);
 		
-		return Utils.join(Utils.removeEmpty(parts), CONJ_MAJOR);
+		return Utils.join(Utils.removeEmpty(parts), " ");
 	}
 }
