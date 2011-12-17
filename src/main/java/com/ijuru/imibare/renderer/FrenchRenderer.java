@@ -26,10 +26,11 @@ import java.util.Stack;
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.Utils;
 import com.ijuru.imibare.lang.Gender;
+import com.ijuru.imibare.lang.Noun;
 import com.ijuru.imibare.lang.NounAttributes;
 
 /**
- * Number renderer for French language (WIP)
+ * Number renderer for French language
  */
 public class FrenchRenderer implements Renderer {
 	
@@ -48,11 +49,11 @@ public class FrenchRenderer implements Renderer {
 	
 	private static final String ZERO = "zéro";
 	private static final String NEGATIVE = "négatifs";
-	private static final String HUNDRED = "cent";
-	private static final String THOUSAND = "mille";
-	private static final String MILLION = "million";
-	private static final String BILLION = "milliard";
-	private static final String TRILLION = "trillion";
+	private static final Noun HUNDRED = new Noun("cent", "cent");
+	private static final Noun THOUSAND = new Noun("mille", "mille");
+	private static final Noun MILLION = new Noun("million", "millions");
+	private static final Noun BILLION = new Noun("milliard", "milliards");
+	private static final Noun TRILLION = new Noun("trillion", "trillions");
 
 	/**
 	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
@@ -71,15 +72,17 @@ public class FrenchRenderer implements Renderer {
 		components.add(makeComponent(BILLION, bases.billions));
 		components.add(makeComponent(MILLION, bases.millions));
 		components.add(makeComponent(THOUSAND, bases.thousands));
-		components.add(makeComponent(HUNDRED, bases.hundreds));
 		
+		// If cent is not followed by another number then add s
 		int upTo100 = bases.tens * 10 + bases.ones;
+		boolean addS = bases.hundreds > 0 && upTo100 == 0;
+		components.add(makeComponent(HUNDRED, bases.hundreds) + (addS ? "s" : ""));
+		
 		boolean feminize = attributes != null && attributes.getGender() == Gender.FEMALE && bases.ones == 1;
 		
 		components.add(ONES[upTo100] + (feminize ? "e" : ""));
 				
-		// Join components using conjunctions
-		// TODO negative adj needs to agree with singular/plural
+		// Join components
 		return join(components) + (bases.negative ? " " + NEGATIVE : "");
 	}
 	
@@ -89,13 +92,17 @@ public class FrenchRenderer implements Renderer {
 	 * @param count the count for that base
 	 * @return the spoken form
 	 */
-	protected String makeComponent(String base, int count) {
+	protected String makeComponent(Noun base, int count) {
 		if (count == 0)
 			return "";
-		if (count == 1 && (base.equals("cent") || base.equals("mille")))
-			return base;	
+		// Don't put un in front of cent or mille
+		else if (count == 1 && (base == HUNDRED || base == THOUSAND))
+			return base.getSingularForm();
+		// But do put in front of million etc
+		else if (count == 1)
+			return render(count, null) + " " + base.getSingularForm();
 		
-		return render(count, null) + " " + base;
+		return render(count, null) + " " + base.getPluralForm();
 	}
 	
 	/**

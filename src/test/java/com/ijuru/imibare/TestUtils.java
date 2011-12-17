@@ -50,9 +50,12 @@ public class TestUtils {
 				String[] parts = line.trim().split(",");
 				int number = Integer.parseInt(parts[0].trim());
 				NounAttributes attributes = NounAttributes.parse(parts[1].trim());
-				String result = parts[2].trim();
+				String expected = parts[2].trim();
+				String actual = renderer.render(number, attributes);
 				
-				Assert.assertEquals(result, renderer.render(number, attributes));
+				//System.out.println(" > Tested number: " + number + " actual: '" + actual + "' expected: '" + expected + "'");
+				
+				Assert.assertEquals(expected, actual);
 			}
 			
 			line = in.readLine();
