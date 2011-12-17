@@ -27,11 +27,13 @@
 10498, m, dix mille quatre cent quatre-vingt-dix-huit
 103000, m, cent trois mille
 1000000, m, un million
-#2000000, m, deux millions
-#3800107, m, trois millions huit cent mille cent sept
+2000000, m, deux millions
+3800107, m, trois millions huit cent mille cent sept
 1000000000, m, un milliard
+2000000701, m, deux milliards sept cent un
 
 #Negatives
-#-1, m, un négatif
-#-14, m, quatorze négatifs
-#-1065, m, mille soixante-cinq négatifs
+-1, m, un négatif
+-1, f, une négatif
+-14, m, quatorze négatifs
+-1065, m, mille soixante-cinq négatifs

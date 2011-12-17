@@ -48,18 +48,35 @@ public class FrenchRenderer implements Renderer {
 	};
 	
 	private static final String ZERO = "zéro";
-	private static final String NEGATIVE = "négatifs";
+	private static final Noun NEGATIVE = new Noun("négatif", "négatifs");
 	private static final Noun HUNDRED = new Noun("cent", "cent");
 	private static final Noun THOUSAND = new Noun("mille", "mille");
 	private static final Noun MILLION = new Noun("million", "millions");
 	private static final Noun BILLION = new Noun("milliard", "milliards");
 	private static final Noun TRILLION = new Noun("trillion", "trillions");
-
+	
 	/**
 	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {
+		String form = renderInternal(number, 0, attributes);
+		
+		// Add negative suffix
+		if (number < 0)
+			form += " " + (number < -1 ? NEGATIVE.getPluralForm() : NEGATIVE.getSingularForm());
+		
+		return form;
+	}
+
+	/**
+	 * Renders a component of this number
+	 * @param number the number
+	 * @param exponent the exponent
+	 * @param attributes the noun attributes
+	 * @return the spoken form
+	 */
+	private String renderInternal(long number, int exponent, NounAttributes attributes) {
 		if (number == 0)
 			return ZERO;
 		
@@ -68,31 +85,34 @@ public class FrenchRenderer implements Renderer {
 		
 		// Calculate spoken components from each base
 		List<String> components = new ArrayList<String>();
-		components.add(makeComponent(TRILLION, bases.trillions));
-		components.add(makeComponent(BILLION, bases.billions));
-		components.add(makeComponent(MILLION, bases.millions));
-		components.add(makeComponent(THOUSAND, bases.thousands));
+		components.add(makeComponent(TRILLION, 12, bases.trillions));
+		components.add(makeComponent(BILLION, 9, bases.billions));
+		components.add(makeComponent(MILLION, 6, bases.millions));
+		components.add(makeComponent(THOUSAND, 3, bases.thousands));
 		
 		// If cent is not followed by another number then add s
 		int upTo100 = bases.tens * 10 + bases.ones;
-		boolean addS = bases.hundreds > 0 && upTo100 == 0;
-		components.add(makeComponent(HUNDRED, bases.hundreds) + (addS ? "s" : ""));
+		boolean addS = exponent == 0 && bases.hundreds > 0 && upTo100 == 0;
 		
-		boolean feminize = attributes != null && attributes.getGender() == Gender.FEMALE && bases.ones == 1;
+		components.add(makeComponent(HUNDRED, 2, bases.hundreds) + (addS ? "s" : ""));
+		
+		// If number ends with a 1, then add -e to feminize (i.e. une)
+		boolean feminize = exponent == 0 && attributes != null && attributes.getGender() == Gender.FEMALE && bases.ones == 1;
 		
 		components.add(ONES[upTo100] + (feminize ? "e" : ""));
 				
 		// Join components
-		return join(components) + (bases.negative ? " " + NEGATIVE : "");
+		return join(components);
 	}
 	
 	/**
 	 * Makes a component of the spoken form
-	 * @param base the base, e.g. thousand, million
+	 * @param base the base word, e.g. thousand, million
+	 * @param exponent the base exponent
 	 * @param count the count for that base
 	 * @return the spoken form
 	 */
-	protected String makeComponent(Noun base, int count) {
+	protected String makeComponent(Noun base, int exponent, int count) {
 		if (count == 0)
 			return "";
 		// Don't put un in front of cent or mille
@@ -100,9 +120,9 @@ public class FrenchRenderer implements Renderer {
 			return base.getSingularForm();
 		// But do put in front of million etc
 		else if (count == 1)
-			return render(count, null) + " " + base.getSingularForm();
+			return renderInternal(count, exponent, null) + " " + base.getSingularForm();
 		
-		return render(count, null) + " " + base.getPluralForm();
+		return renderInternal(count, exponent, null) + " " + base.getPluralForm();
 	}
 	
 	/**
