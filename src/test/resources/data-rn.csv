@@ -5,12 +5,23 @@
 1, , rimwe
 1, c1, umwe
 1, c9, imwe
+7, c12, indwi
+10, c2, icumi
+11, c2, icumi n'umwe
 15, c2, icumi na batanu
+17, c4, icumi n'indwi
 23, c4, mirongo ibiri n'itatu
+48, c6, mirongo ine n'umunani
+79, c6, mirongo irindwi n'icenda
+101, c8, ijana na kimwe
 103, c6, ijana n'atatu
 145, c8, ijana na mirongo ine na bitanu
+299, c10, amajana abiri na mirongo icenda n'icenda
 7692, c10, ibihumbi indwi n'amajana atandatu na mirongo icenda na zibiri
 8047692, c10, imiliyoni umunani n'ibihumbi mirongo ine n'indwi n'amajana atandatu na mirongo icenda na zibiri
+1000005, c8, umuliyoni umwe na bitanu
+300000000, c2, imiliyoni amajana atatu
+7000000001, c2, imiliyaridi indwi n'umwe
 
 #Negatives	
 -14, , kuramwo icumi na kane

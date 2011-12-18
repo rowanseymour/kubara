@@ -1,3 +1,8 @@
-Library for rendering numbers as text in their spoken forms. So far only supports English, Kinyarwanda and Kirundi
+Imibare Readme
+=================================
+
+This is a library for rendering numbers as text in their spoken forms. So far only supports English, French, Kinyarwanda and Kirundi.
+
+Thanks to Nkurunziza Ildephonse and Emmanuel Habumuremyi for helping with the Kirundi and Kinyarwanda rendering.
 
 All code is available under GPLv3. Copyright Rowan Seymour 2011

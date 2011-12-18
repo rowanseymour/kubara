@@ -48,7 +48,7 @@ public class TestUtils {
 		while (line != null) {
 			if (line.trim().length() > 0 && line.charAt(0) != '#') {
 				String[] parts = line.trim().split(",");
-				int number = Integer.parseInt(parts[0].trim());
+				long number = Long.parseLong(parts[0].trim());
 				
 				NounAttributes attributes;
 				String expected;
