@@ -57,11 +57,13 @@ public class NounAttributes {
 		if (str != null) {	
 			str = str.trim();	
 			
-			Pattern regex = Pattern.compile("(\\d{0,2})([mfn]?)", Pattern.CASE_INSENSITIVE);
+			Pattern regex = Pattern.compile("(c\\d{1,2})?([mfn]?)", Pattern.CASE_INSENSITIVE);
 			Matcher matcher = regex.matcher(str);
 			if (matcher.find()) {
-				int clazz = (matcher.group(1).length() > 0) ? Integer.parseInt(matcher.group(1)) : UNSPECIFIED_CLAZZ;
-				Gender gender = Gender.parse(matcher.group(2));
+				String strClazz = matcher.group(1);
+				String strGender = matcher.group(2);
+				int clazz = (strClazz != null) ? Integer.parseInt(strClazz.substring(1)) : UNSPECIFIED_CLAZZ;
+				Gender gender = Gender.parse(strGender);
 				return new NounAttributes(clazz, gender);
 			}
 		}

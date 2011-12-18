@@ -39,10 +39,10 @@ public class NounAttributesTest extends TestCase {
 	public void testParse() {
 		Assert.assertEquals(new NounAttributes(), NounAttributes.parse(null));
 		Assert.assertEquals(new NounAttributes(), NounAttributes.parse(""));
-		Assert.assertEquals(new NounAttributes(1, Gender.UNSPECIFIED), NounAttributes.parse("1"));
-		Assert.assertEquals(new NounAttributes(2, Gender.MALE), NounAttributes.parse("2m"));
-		Assert.assertEquals(new NounAttributes(3, Gender.FEMALE), NounAttributes.parse("3f"));
-		Assert.assertEquals(new NounAttributes(4, Gender.NEUTER), NounAttributes.parse("4n"));
+		Assert.assertEquals(new NounAttributes(1, Gender.UNSPECIFIED), NounAttributes.parse("c1"));
+		Assert.assertEquals(new NounAttributes(2, Gender.MALE), NounAttributes.parse("c2m"));
+		Assert.assertEquals(new NounAttributes(3, Gender.FEMALE), NounAttributes.parse("c3f"));
+		Assert.assertEquals(new NounAttributes(4, Gender.NEUTER), NounAttributes.parse("c4n"));
 		Assert.assertEquals(new NounAttributes(0, Gender.MALE), NounAttributes.parse("m"));
 	}
 }

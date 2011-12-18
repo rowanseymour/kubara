@@ -49,8 +49,19 @@ public class TestUtils {
 			if (line.trim().length() > 0 && line.charAt(0) != '#') {
 				String[] parts = line.trim().split(",");
 				int number = Integer.parseInt(parts[0].trim());
-				NounAttributes attributes = NounAttributes.parse(parts[1].trim());
-				String expected = parts[2].trim();
+				
+				NounAttributes attributes;
+				String expected;
+				
+				if (parts.length == 3) {
+					attributes = NounAttributes.parse(parts[1].trim());
+					expected = parts[2].trim();
+				}
+				else {
+					attributes = new NounAttributes();
+					expected = parts[1].trim();
+				}
+				
 				String actual = renderer.render(number, attributes);
 				
 				//System.out.println(" > Tested number: " + number + " actual: '" + actual + "' expected: '" + expected + "'");
