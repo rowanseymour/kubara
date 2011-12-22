@@ -32,7 +32,7 @@ import com.ijuru.imibare.lang.NounAttributes;
 /**
  * Number renderer for French language
  */
-public class FrenchRenderer implements Renderer {
+public class FrenchNumberRenderer implements NumberRenderer {
 	
 	private static final String[] ONES = {
 		"", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", 
@@ -56,7 +56,7 @@ public class FrenchRenderer implements Renderer {
 	private static final Noun TRILLION = new Noun("trillion", "trillions");
 	
 	/**
-	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
+	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(int, NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {

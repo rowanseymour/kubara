@@ -28,7 +28,7 @@ import java.nio.charset.Charset;
 import junit.framework.Assert;
 
 import com.ijuru.imibare.lang.NounAttributes;
-import com.ijuru.imibare.renderer.Renderer;
+import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
  * Helper class for unit testing
@@ -40,7 +40,7 @@ public class TestUtils {
 	 * @param renderer the renderer
 	 * @throws IOException
 	 */
-	public static void runCases(String path, Renderer renderer) throws IOException {		
+	public static void runCases(String path, NumberRenderer renderer) throws IOException {		
 		InputStream stream = TestUtils.class.getResourceAsStream(path);
 		BufferedReader in = new BufferedReader(new InputStreamReader(stream, Charset.forName("UTF-8")));
 		

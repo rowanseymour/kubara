@@ -31,6 +31,6 @@ import junit.framework.TestCase;
 public class KirundiRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-rn.csv", new KirundiRenderer());
+		TestUtils.runCases("/data-rn.csv", new KirundiNumberRenderer());
 	}
 }

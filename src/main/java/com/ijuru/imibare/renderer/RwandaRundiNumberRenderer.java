@@ -31,13 +31,13 @@ import com.ijuru.imibare.lang.NounAttributes;
 /**
  * Base class for number renderers for Rwanda-Rundi family of languages
  */
-public abstract class RwandaRundiRenderer implements Renderer {
+public abstract class RwandaRundiNumberRenderer implements NumberRenderer {
 
 	private static final String CONJ_BEFORE_CONSONANT = " na ";
 	private static final String CONJ_BEFORE_VOWEL = " n'";
 	
 	/**
-	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
+	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(int, NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {

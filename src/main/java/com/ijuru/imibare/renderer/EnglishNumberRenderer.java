@@ -30,7 +30,7 @@ import com.ijuru.imibare.lang.NounAttributes;
 /**
  * Number renderer for English language
  */
-public class EnglishRenderer implements Renderer {
+public class EnglishNumberRenderer implements NumberRenderer {
 	
 	private static final String CONJ_COMPONENT = " ";
 	private static final String CONJ_PART = " and ";
@@ -56,7 +56,7 @@ public class EnglishRenderer implements Renderer {
 	private static final String TRILLION = "trillion";
 
 	/**
-	 * @see com.ijuru.imibare.renderer.Renderer#render(int, NounAttributes)
+	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(int, NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {

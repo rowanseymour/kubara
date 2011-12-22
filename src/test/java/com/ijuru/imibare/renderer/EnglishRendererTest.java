@@ -31,6 +31,6 @@ import com.ijuru.imibare.TestUtils;
 public class EnglishRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-en.csv", new EnglishRenderer());
+		TestUtils.runCases("/data-en.csv", new EnglishNumberRenderer());
 	}
 }

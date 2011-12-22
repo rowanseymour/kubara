@@ -24,7 +24,7 @@ import com.ijuru.imibare.lang.NounAttributes;
 /**
  * Interface for a basic number renderer
  */
-public interface Renderer {
+public interface NumberRenderer {
 	/**
 	 * Renders the number into it's spoken form
 	 * @param number the number

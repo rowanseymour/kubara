@@ -22,7 +22,7 @@ package com.ijuru.imibare;
 import java.util.Locale;
 
 import com.ijuru.imibare.lang.NounAttributes;
-import com.ijuru.imibare.renderer.Renderer;
+import com.ijuru.imibare.renderer.NumberRenderer;
 
 public class ConsoleApp {
 
@@ -44,7 +44,7 @@ public class ConsoleApp {
 			
 			try {
 				// Select a renderer based on the specified language
-				Renderer renderer = RendererFactory.getRendererByLocale(new Locale(lang));
+				NumberRenderer renderer = NumberRendererFactory.getRendererByLocale(new Locale(lang));
 				
 				// Calculate the result and print it
 				System.out.println(renderer.render(val, attributes));

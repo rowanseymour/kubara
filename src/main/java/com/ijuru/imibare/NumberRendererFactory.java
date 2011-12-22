@@ -23,24 +23,24 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import com.ijuru.imibare.renderer.EnglishRenderer;
-import com.ijuru.imibare.renderer.FrenchRenderer;
-import com.ijuru.imibare.renderer.KinyarwandaRenderer;
-import com.ijuru.imibare.renderer.KirundiRenderer;
-import com.ijuru.imibare.renderer.Renderer;
+import com.ijuru.imibare.renderer.EnglishNumberRenderer;
+import com.ijuru.imibare.renderer.FrenchNumberRenderer;
+import com.ijuru.imibare.renderer.KinyarwandaNumberRenderer;
+import com.ijuru.imibare.renderer.KirundiNumberRenderer;
+import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
  * Factory class to create renderer instances
  */
-public class RendererFactory {
+public class NumberRendererFactory {
 
-	private static final Map<Locale, Renderer> renderers = new HashMap<Locale, Renderer>();
+	private static final Map<Locale, NumberRenderer> renderers = new HashMap<Locale, NumberRenderer>();
 	
 	static {
-		registerRenderer(new Locale("en"), new EnglishRenderer());
-		registerRenderer(new Locale("fr"), new FrenchRenderer());
-		registerRenderer(new Locale("rw"), new KinyarwandaRenderer());
-		registerRenderer(new Locale("rn"), new KirundiRenderer());
+		registerRenderer(new Locale("en"), new EnglishNumberRenderer());
+		registerRenderer(new Locale("fr"), new FrenchNumberRenderer());
+		registerRenderer(new Locale("rw"), new KinyarwandaNumberRenderer());
+		registerRenderer(new Locale("rn"), new KirundiNumberRenderer());
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class RendererFactory {
 	 * @param locale the locale
 	 * @return the renderer
 	 */
-	public static Renderer getRendererByLocale(Locale locale) throws UnsupportedLanguageException {
+	public static NumberRenderer getRendererByLocale(Locale locale) throws UnsupportedLanguageException {
 		if (!renderers.containsKey(locale))
 			throw new UnsupportedLanguageException(locale);
 		
@@ -60,7 +60,7 @@ public class RendererFactory {
 	 * @param locale the locale
 	 * @param renderer the renderer
 	 */
-	public static void registerRenderer(Locale locale, Renderer renderer) {
+	public static void registerRenderer(Locale locale, NumberRenderer renderer) {
 		renderers.put(locale, renderer);
 	}
 }

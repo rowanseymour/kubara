@@ -31,6 +31,6 @@ import com.ijuru.imibare.TestUtils;
 public class FrenchRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-fr.csv", new FrenchRenderer());
+		TestUtils.runCases("/data-fr.csv", new FrenchNumberRenderer());
 	}
 }

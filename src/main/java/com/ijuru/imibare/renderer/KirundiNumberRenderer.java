@@ -24,7 +24,7 @@ import com.ijuru.imibare.lang.BantuNoun;
 /**
  * Number renderer for Kirundi language
  */
-public class KirundiRenderer extends RwandaRundiRenderer {
+public class KirundiNumberRenderer extends RwandaRundiNumberRenderer {
 	
 	private static final String[][] ONES = {
 		//0   1        2         3         4       5         6            7        8          9

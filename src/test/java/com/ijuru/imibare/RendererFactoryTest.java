@@ -22,16 +22,16 @@ package com.ijuru.imibare;
 import java.util.Locale;
 
 import com.ijuru.imibare.lang.NounAttributes;
-import com.ijuru.imibare.renderer.EnglishRenderer;
-import com.ijuru.imibare.renderer.FrenchRenderer;
-import com.ijuru.imibare.renderer.KinyarwandaRenderer;
-import com.ijuru.imibare.renderer.KirundiRenderer;
-import com.ijuru.imibare.renderer.Renderer;
+import com.ijuru.imibare.renderer.EnglishNumberRenderer;
+import com.ijuru.imibare.renderer.FrenchNumberRenderer;
+import com.ijuru.imibare.renderer.KinyarwandaNumberRenderer;
+import com.ijuru.imibare.renderer.KirundiNumberRenderer;
+import com.ijuru.imibare.renderer.NumberRenderer;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
-class TestRenderer implements Renderer {
+class TestRenderer implements NumberRenderer {
 	@Override
 	public String render(long number, NounAttributes attributes) {
 		return "test";
@@ -44,14 +44,14 @@ class TestRenderer implements Renderer {
 public class RendererFactoryTest extends TestCase {
 	
 	public void testGetRenderer() throws UnsupportedLanguageException {
-		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("en")) instanceof EnglishRenderer);
-		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("fr")) instanceof FrenchRenderer);
-		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("rw")) instanceof KinyarwandaRenderer);
-		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("rn")) instanceof KirundiRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("en")) instanceof EnglishNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("fr")) instanceof FrenchNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("rw")) instanceof KinyarwandaNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("rn")) instanceof KirundiNumberRenderer);
 	}
 
 	public void testRegisterRenderer() throws UnsupportedLanguageException {
-		RendererFactory.registerRenderer(new Locale("tt"), new TestRenderer());
-		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("tt")) instanceof TestRenderer);
+		NumberRendererFactory.registerRenderer(new Locale("tt"), new TestRenderer());
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("tt")) instanceof TestRenderer);
 	}
 }

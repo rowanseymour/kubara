@@ -31,6 +31,6 @@ import com.ijuru.imibare.TestUtils;
 public class KinyarwandaRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-rw.csv", new KinyarwandaRenderer());
+		TestUtils.runCases("/data-rw.csv", new KinyarwandaNumberRenderer());
 	}
 }
