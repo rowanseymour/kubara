@@ -20,6 +20,7 @@
 package com.ijuru.imibare;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import com.ijuru.imibare.renderer.EnglishRenderer;
@@ -33,33 +34,33 @@ import com.ijuru.imibare.renderer.Renderer;
  */
 public class RendererFactory {
 
-	private static final Map<String, Renderer> renderers = new HashMap<String, Renderer>();
+	private static final Map<Locale, Renderer> renderers = new HashMap<Locale, Renderer>();
 	
 	static {
-		registerRenderer("en", new EnglishRenderer());
-		registerRenderer("fr", new FrenchRenderer());
-		registerRenderer("rw", new KinyarwandaRenderer());
-		registerRenderer("rn", new KirundiRenderer());
+		registerRenderer(new Locale("en"), new EnglishRenderer());
+		registerRenderer(new Locale("fr"), new FrenchRenderer());
+		registerRenderer(new Locale("rw"), new KinyarwandaRenderer());
+		registerRenderer(new Locale("rn"), new KirundiRenderer());
 	}
 	
 	/**
-	 * Gets a renderer for the given language
-	 * @param lang the language, e.g. 'en'
+	 * Gets a renderer for the given locale
+	 * @param locale the locale
 	 * @return the renderer
 	 */
-	public static Renderer getRenderer(String lang) throws UnsupportedLanguageException {
-		if (!renderers.containsKey(lang))
-			throw new UnsupportedLanguageException(lang);
+	public static Renderer getRendererByLocale(Locale locale) throws UnsupportedLanguageException {
+		if (!renderers.containsKey(locale))
+			throw new UnsupportedLanguageException(locale);
 		
-		return renderers.get(lang);
+		return renderers.get(locale);
 	}
 	
 	/**
-	 * Registers a renderer for the given language
-	 * @param lang the language, e.g. 'en'
+	 * Registers a renderer for the given locale
+	 * @param locale the locale
 	 * @param renderer the renderer
 	 */
-	public static void registerRenderer(String lang, Renderer renderer) {
-		renderers.put(lang, renderer);
+	public static void registerRenderer(Locale locale, Renderer renderer) {
+		renderers.put(locale, renderer);
 	}
 }

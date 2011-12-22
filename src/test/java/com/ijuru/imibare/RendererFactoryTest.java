@@ -19,6 +19,8 @@
 
 package com.ijuru.imibare;
 
+import java.util.Locale;
+
 import com.ijuru.imibare.lang.NounAttributes;
 import com.ijuru.imibare.renderer.EnglishRenderer;
 import com.ijuru.imibare.renderer.FrenchRenderer;
@@ -42,14 +44,14 @@ class TestRenderer implements Renderer {
 public class RendererFactoryTest extends TestCase {
 	
 	public void testGetRenderer() throws UnsupportedLanguageException {
-		Assert.assertTrue(RendererFactory.getRenderer("en") instanceof EnglishRenderer);
-		Assert.assertTrue(RendererFactory.getRenderer("fr") instanceof FrenchRenderer);
-		Assert.assertTrue(RendererFactory.getRenderer("rw") instanceof KinyarwandaRenderer);
-		Assert.assertTrue(RendererFactory.getRenderer("rn") instanceof KirundiRenderer);
+		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("en")) instanceof EnglishRenderer);
+		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("fr")) instanceof FrenchRenderer);
+		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("rw")) instanceof KinyarwandaRenderer);
+		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("rn")) instanceof KirundiRenderer);
 	}
 
 	public void testRegisterRenderer() throws UnsupportedLanguageException {
-		RendererFactory.registerRenderer("tt", new TestRenderer());
-		Assert.assertTrue(RendererFactory.getRenderer("tt") instanceof TestRenderer);
+		RendererFactory.registerRenderer(new Locale("tt"), new TestRenderer());
+		Assert.assertTrue(RendererFactory.getRendererByLocale(new Locale("tt")) instanceof TestRenderer);
 	}
 }

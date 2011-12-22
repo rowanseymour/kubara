@@ -19,6 +19,8 @@
 
 package com.ijuru.imibare;
 
+import java.util.Locale;
+
 /**
  * Exception class for unsupported languages
  */
@@ -30,7 +32,7 @@ public class UnsupportedLanguageException extends Exception {
 	 * Creates an exception for the requested language
 	 * @param lang the requested language
 	 */
-	public UnsupportedLanguageException(String lang) {
-		super("Language '" + lang + "' is not supported");
+	public UnsupportedLanguageException(Locale locale) {
+		super("Language '" + locale.getDisplayLanguage() + "' is not supported");
 	}
 }
