@@ -29,7 +29,10 @@ public class NounAttributes {
 	
 	private static final int UNSPECIFIED_CLAZZ = 0;
 	
-	private int clazz = 0;
+	public static final NounAttributes MALE = new NounAttributes(UNSPECIFIED_CLAZZ, Gender.MALE);
+	public static final NounAttributes FEMALE = new NounAttributes(UNSPECIFIED_CLAZZ, Gender.FEMALE);
+	
+	private int clazz = UNSPECIFIED_CLAZZ;
 	private Gender gender = Gender.UNSPECIFIED;
 	
 	/**
