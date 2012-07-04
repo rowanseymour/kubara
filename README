@@ -21,4 +21,8 @@ NumberRenderer renderer = NumberRendererFactory.getRendererByLocale(new Locale("
 
 3. Finally render the number as a string:
 
-renderer.render(1234, attributes);
+renderer.render(123, attributes);
+
+... which will output "ijana na makumyabiri na batatu"
+
+See examples/imibare.groovy for a complete example
