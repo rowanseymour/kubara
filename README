@@ -1,3 +1,4 @@
+=================================
 Imibare Readme
 =================================
 
@@ -6,3 +7,18 @@ This is a library for rendering numbers as text in their spoken forms. So far on
 Thanks to Nkurunziza Ildephonse and Emmanuel Habumuremyi for helping with the Kirundi and Kinyarwanda rendering.
 
 All code is available under GPLv3. Copyright Rowan Seymour 2011
+
+Usage
+=================================
+
+1. First create a noun attributes object to describe the kind of noun (i.e. class number or gender):
+
+NounAttributes attributes = new NounAttributes(2, Gender.UNSPECIFIED);
+
+2. Then get a renderer instance for the locale (rw, rn, en, fr):
+
+NumberRenderer renderer = NumberRendererFactory.getRendererByLocale(new Locale("rw"));
+
+3. Finally render the number as a string:
+
+renderer.render(1234, attributes);
