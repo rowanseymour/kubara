@@ -19,6 +19,7 @@
 
 package com.ijuru.imibare;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -53,6 +54,14 @@ public class NumberRendererFactory {
 			throw new UnsupportedLanguageException(locale);
 		
 		return renderers.get(locale);
+	}
+
+	/**
+	 * Gets all available renderers
+	 * @return the renderers
+	 */
+	public static Collection<NumberRenderer> getAllRenderers() {
+		return renderers.values();
 	}
 	
 	/**

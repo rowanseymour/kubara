@@ -48,6 +48,14 @@ public class NumberRendererFactoryTest {
 	}
 
 	/**
+	 * @see NumberRendererFactory#getAllRenderers()
+	 */
+	@Test
+	public void getAllRenderers() {
+		Assert.assertTrue(NumberRendererFactory.getAllRenderers().size() > 0);
+	}
+
+	/**
 	 * @see NumberRendererFactory#registerRenderer(com.ijuru.imibare.renderer.NumberRenderer)
 	 */
 	@Test
