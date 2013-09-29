@@ -17,14 +17,17 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.renderer;
+package com.ijuru.imibare.renderer.impl;
 
 import com.ijuru.imibare.lang.BantuNoun;
+import com.ijuru.imibare.renderer.BaseRwandaRundiNumberRenderer;
+
+import java.util.Locale;
 
 /**
  * Number renderer for Kinyarwanda language
  */
-public class KinyarwandaNumberRenderer extends RwandaRundiNumberRenderer {
+public class KinyarwandaNumberRenderer extends BaseRwandaRundiNumberRenderer {
 	
 	private static final String[][] ONES = {
 		//0   1        2         3         4       5         6            7           8         9
@@ -78,12 +81,26 @@ public class KinyarwandaNumberRenderer extends RwandaRundiNumberRenderer {
 	public static final BantuNoun THOUSAND = new BantuNoun("igihumbi", 7, "ibihumbi", 8);
 	public static final BantuNoun MILLION = new BantuNoun("miliyoni", 9, "miliyoni", 10);
 	public static final BantuNoun BILLION = new BantuNoun("miliyari", 9, "miliyari", 10);
-	
+
+	/**
+	 * @see com.ijuru.imibare.renderer.NumberRenderer#getLocale()
+	 */
+	@Override
+	public Locale getLocale() {
+		return new Locale("rw");
+	}
+
+	/**
+	 * @see BaseRwandaRundiNumberRenderer#getOnes()
+	 */
 	@Override
 	protected String[][] getOnes() {
 		return ONES;
 	}
 
+	/**
+	 * @see BaseRwandaRundiNumberRenderer#getTens()
+	 */
 	@Override
 	protected String[] getTens() {
 		return TENS;

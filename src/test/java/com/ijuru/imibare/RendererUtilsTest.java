@@ -24,18 +24,16 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
-import com.ijuru.imibare.Utils;
-
 /**
  * Test cases for Utils class
  */
-public class UtilsTest extends TestCase {
+public class RendererUtilsTest extends TestCase {
 
 	public void testIsVowel() {
-		assertTrue(Utils.isVowel('A'));
-		assertTrue(Utils.isVowel('a'));
-		assertFalse(Utils.isVowel('Z'));
-		assertFalse(Utils.isVowel('z'));
+		assertTrue(RendererUtils.isVowel('A'));
+		assertTrue(RendererUtils.isVowel('a'));
+		assertFalse(RendererUtils.isVowel('Z'));
+		assertFalse(RendererUtils.isVowel('z'));
 	}
 	
 	public void testRemoveEmpty() {
@@ -44,7 +42,7 @@ public class UtilsTest extends TestCase {
 		strings.add("abc");
 		strings.add("");
 		strings.add("def");
-		strings = Utils.removeEmpty(strings);
+		strings = RendererUtils.removeEmpty(strings);
 		assertEquals(2, strings.size());
 		assertEquals("abc", strings.get(0));
 		assertEquals("def", strings.get(1));
@@ -52,13 +50,13 @@ public class UtilsTest extends TestCase {
 
 	public void testJoin() {
 		List<String> strings = new ArrayList<String>();
-		assertEquals("", Utils.join(strings, "|"));
+		assertEquals("", RendererUtils.join(strings, "|"));
 		
 		strings.add("abc");
-		assertEquals("abc", Utils.join(strings, "|"));
+		assertEquals("abc", RendererUtils.join(strings, "|"));
 		strings.add("def");
-		assertEquals("abc|def", Utils.join(strings, "|"));
+		assertEquals("abc|def", RendererUtils.join(strings, "|"));
 		strings.add("ghi");
-		assertEquals("abc|def|ghi", Utils.join(strings, "|"));
+		assertEquals("abc|def|ghi", RendererUtils.join(strings, "|"));
 	}
 }

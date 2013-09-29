@@ -23,9 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * General utility class
+ * Utility methods for renderers
  */
-public class Utils {
+public class RendererUtils {
+
 	/**
 	 * Checks whether the given character is a vowel
 	 * @param c the character

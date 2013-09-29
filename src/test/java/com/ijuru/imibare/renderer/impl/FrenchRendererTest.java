@@ -17,7 +17,7 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.renderer;
+package com.ijuru.imibare.renderer.impl;
 
 import java.io.IOException;
 
@@ -26,11 +26,11 @@ import junit.framework.TestCase;
 import com.ijuru.imibare.TestUtils;
 
 /**
- * Test case for EnglishRenderer class
+ * Test case for FrenchRenderer class
  */
-public class EnglishRendererTest extends TestCase {
+public class FrenchRendererTest extends TestCase {
 
 	public void testRender() throws IOException {
-		TestUtils.runCases("/data-en.csv", new EnglishNumberRenderer());
+		TestUtils.runCases("/data-fr.csv", new FrenchNumberRenderer());
 	}
 }

@@ -17,17 +17,19 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.renderer;
+package com.ijuru.imibare.renderer.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Stack;
 
 import com.ijuru.imibare.DecimalBases;
-import com.ijuru.imibare.Utils;
+import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.Gender;
 import com.ijuru.imibare.lang.Noun;
 import com.ijuru.imibare.lang.NounAttributes;
+import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
  * Number renderer for French language
@@ -54,9 +56,17 @@ public class FrenchNumberRenderer implements NumberRenderer {
 	private static final Noun MILLION = new Noun("million", "millions");
 	private static final Noun BILLION = new Noun("milliard", "milliards");
 	private static final Noun TRILLION = new Noun("trillion", "trillions");
-	
+
 	/**
-	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(int, NounAttributes)
+	 * @see NumberRenderer#getLocale()
+	 */
+	@Override
+	public Locale getLocale() {
+		return new Locale("fr");
+	}
+
+	/**
+	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {
@@ -140,12 +150,12 @@ public class FrenchNumberRenderer implements NumberRenderer {
 		
 		// Join every but tens with spaces
 		String compMinor = comps.pop();
-		String compMajor = Utils.join(Utils.removeEmpty(comps), " ");		
+		String compMajor = RendererUtils.join(RendererUtils.removeEmpty(comps), " ");
 		
 		List<String> parts = new ArrayList<String>();
 		parts.add(compMajor);
 		parts.add(compMinor);
 		
-		return Utils.join(Utils.removeEmpty(parts), " ");
+		return RendererUtils.join(RendererUtils.removeEmpty(parts), " ");
 	}
 }

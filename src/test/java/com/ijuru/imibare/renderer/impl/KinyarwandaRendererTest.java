@@ -17,7 +17,7 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.renderer;
+package com.ijuru.imibare.renderer.impl;
 
 import java.io.IOException;
 

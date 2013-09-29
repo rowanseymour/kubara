@@ -17,15 +17,17 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare.renderer;
+package com.ijuru.imibare.renderer.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Stack;
 
 import com.ijuru.imibare.DecimalBases;
-import com.ijuru.imibare.Utils;
+import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.NounAttributes;
+import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
  * Number renderer for English language
@@ -56,7 +58,15 @@ public class EnglishNumberRenderer implements NumberRenderer {
 	private static final String TRILLION = "trillion";
 
 	/**
-	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(int, NounAttributes)
+	 * @see NumberRenderer#getLocale()
+	 */
+	@Override
+	public Locale getLocale() {
+		return new Locale("en");
+	}
+
+	/**
+	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {
@@ -118,12 +128,12 @@ public class EnglishNumberRenderer implements NumberRenderer {
 		String compMinor = (tens + CONJ_COMPONENT + ones).trim();
 		
 		// Join the other components
-		String compMajor = Utils.join(Utils.removeEmpty(comps), CONJ_COMPONENT);
+		String compMajor = RendererUtils.join(RendererUtils.removeEmpty(comps), CONJ_COMPONENT);
 		
 		List<String> parts = new ArrayList<String>();
 		parts.add(compMajor);
 		parts.add(compMinor);
 		
-		return Utils.join(Utils.removeEmpty(parts), CONJ_PART);
+		return RendererUtils.join(RendererUtils.removeEmpty(parts), CONJ_PART);
 	}
 }

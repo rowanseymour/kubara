@@ -23,10 +23,10 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import com.ijuru.imibare.renderer.EnglishNumberRenderer;
-import com.ijuru.imibare.renderer.FrenchNumberRenderer;
-import com.ijuru.imibare.renderer.KinyarwandaNumberRenderer;
-import com.ijuru.imibare.renderer.KirundiNumberRenderer;
+import com.ijuru.imibare.renderer.impl.EnglishNumberRenderer;
+import com.ijuru.imibare.renderer.impl.FrenchNumberRenderer;
+import com.ijuru.imibare.renderer.impl.KinyarwandaNumberRenderer;
+import com.ijuru.imibare.renderer.impl.KirundiNumberRenderer;
 import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
@@ -37,10 +37,10 @@ public class NumberRendererFactory {
 	private static final Map<Locale, NumberRenderer> renderers = new HashMap<Locale, NumberRenderer>();
 	
 	static {
-		registerRenderer(new Locale("en"), new EnglishNumberRenderer());
-		registerRenderer(new Locale("fr"), new FrenchNumberRenderer());
-		registerRenderer(new Locale("rw"), new KinyarwandaNumberRenderer());
-		registerRenderer(new Locale("rn"), new KirundiNumberRenderer());
+		registerRenderer(new EnglishNumberRenderer());
+		registerRenderer(new FrenchNumberRenderer());
+		registerRenderer(new KinyarwandaNumberRenderer());
+		registerRenderer(new KirundiNumberRenderer());
 	}
 	
 	/**
@@ -56,11 +56,10 @@ public class NumberRendererFactory {
 	}
 	
 	/**
-	 * Registers a renderer for the given locale
-	 * @param locale the locale
+	 * Registers a renderer
 	 * @param renderer the renderer
 	 */
-	public static void registerRenderer(Locale locale, NumberRenderer renderer) {
-		renderers.put(locale, renderer);
+	public static void registerRenderer(NumberRenderer renderer) {
+		renderers.put(renderer.getLocale(), renderer);
 	}
 }

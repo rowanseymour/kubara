@@ -23,6 +23,7 @@ package com.ijuru.imibare.lang;
  * Basic noun with singular and plural forms
  */
 public class Noun {
+
 	protected String singularForm;
 	protected String pluralForm;
 	

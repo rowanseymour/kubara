@@ -23,6 +23,7 @@ package com.ijuru.imibare.lang;
  * Noun gender
  */
 public enum Gender {
+
 	UNSPECIFIED,
 	MALE,
 	FEMALE,

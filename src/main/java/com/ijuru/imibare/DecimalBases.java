@@ -23,6 +23,7 @@ package com.ijuru.imibare;
  * Number representation used in spoken English, Kinyarwanda and Kirundi etc
  */
 public class DecimalBases {
+
 	public boolean negative;
 	public int trillions;
 	public int billions;

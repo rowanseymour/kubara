@@ -21,15 +21,24 @@ package com.ijuru.imibare.renderer;
 
 import com.ijuru.imibare.lang.NounAttributes;
 
+import java.util.Locale;
+
 /**
  * Interface for a basic number renderer
  */
 public interface NumberRenderer {
+
+	/**
+	 * Gets the locale of this renderer
+	 * @return the locale
+	 */
+	Locale getLocale();
+
 	/**
 	 * Renders the number into it's spoken form
 	 * @param number the number
-	 * @param the noun attributes
+	 * @param attributes noun attributes
 	 * @return the spoken form
 	 */
-	public String render(long number, NounAttributes attributes);
+	String render(long number, NounAttributes attributes);
 }

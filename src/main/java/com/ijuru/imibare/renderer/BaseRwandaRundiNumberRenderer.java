@@ -23,21 +23,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ijuru.imibare.DecimalBases;
-import com.ijuru.imibare.Utils;
+import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.BantuNoun;
 import com.ijuru.imibare.lang.Gender;
 import com.ijuru.imibare.lang.NounAttributes;
 
 /**
- * Base class for number renderers for Rwanda-Rundi family of languages
+ * Abstract base class for number renderers for Rwanda-Rundi family of languages
  */
-public abstract class RwandaRundiNumberRenderer implements NumberRenderer {
+public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
 
 	private static final String CONJ_BEFORE_CONSONANT = " na ";
 	private static final String CONJ_BEFORE_VOWEL = " n'";
 	
 	/**
-	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(int, NounAttributes)
+	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
 	 */
 	@Override
 	public String render(long number, NounAttributes attributes) {
@@ -56,7 +56,7 @@ public abstract class RwandaRundiNumberRenderer implements NumberRenderer {
 		components.add(getTens()[bases.tens]);
 		components.add(getOnes()[attributes.getClazz()][bases.ones]);
 		
-		// Join components using Kinyarwanda conjunctions
+		// Join components using conjunctions
 		return (bases.negative ? getNegativeWord() + " " : "") + join(components);
 	}
 	
@@ -82,14 +82,14 @@ public abstract class RwandaRundiNumberRenderer implements NumberRenderer {
 	 */
 	protected String join(List<String> components) {
 		// Remove empty components
-		List<String> nonEmptyComponents = Utils.removeEmpty(components);
+		List<String> nonEmptyComponents = RendererUtils.removeEmpty(components);
 		if (nonEmptyComponents.size() == 0)
 			return "";
 		
 		StringBuilder builder = new StringBuilder(nonEmptyComponents.get(0));
 		for (int c = 1; c < nonEmptyComponents.size(); ++c) {
 			String component = nonEmptyComponents.get(c);
-			if (Utils.isVowel(component.charAt(0)))
+			if (RendererUtils.isVowel(component.charAt(0)))
 				builder.append(CONJ_BEFORE_VOWEL);
 			else
 				builder.append(CONJ_BEFORE_CONSONANT);

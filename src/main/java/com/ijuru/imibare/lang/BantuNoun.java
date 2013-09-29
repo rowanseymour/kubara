@@ -23,6 +23,7 @@ package com.ijuru.imibare.lang;
  * Basic Bantu noun which uses the 16 standard Bantu noun classes
  */
 public class BantuNoun extends Noun {
+
 	protected int singularClazz;
 	protected int pluralClazz;
 	
