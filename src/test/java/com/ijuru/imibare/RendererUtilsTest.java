@@ -22,21 +22,31 @@ package com.ijuru.imibare;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
- * Test cases for Utils class
+ * Tests for {@link RendererUtils}
  */
-public class RendererUtilsTest extends TestCase {
+public class RendererUtilsTest {
 
-	public void testIsVowel() {
+	/**
+	 * @see RendererUtils#isVowel(char)
+	 */
+	@Test
+	public void isVowel() {
 		assertTrue(RendererUtils.isVowel('A'));
 		assertTrue(RendererUtils.isVowel('a'));
 		assertFalse(RendererUtils.isVowel('Z'));
 		assertFalse(RendererUtils.isVowel('z'));
 	}
-	
-	public void testRemoveEmpty() {
+
+	/**
+	 * @see RendererUtils#removeEmpty(java.util.List)
+	 */
+	@Test
+	public void removeEmpty() {
 		List<String> strings = new ArrayList<String>();
 		strings.add("");
 		strings.add("abc");
@@ -48,7 +58,11 @@ public class RendererUtilsTest extends TestCase {
 		assertEquals("def", strings.get(1));
 	}
 
-	public void testJoin() {
+	/**
+	 * @see RendererUtils#join(java.util.List, String)
+	 */
+	@Test
+	public void join() {
 		List<String> strings = new ArrayList<String>();
 		assertEquals("", RendererUtils.join(strings, "|"));
 		

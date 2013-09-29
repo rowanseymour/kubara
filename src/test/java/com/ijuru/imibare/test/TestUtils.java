@@ -17,7 +17,7 @@
  * along with Imibare. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.ijuru.imibare;
+package com.ijuru.imibare.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,11 +29,14 @@ import junit.framework.Assert;
 
 import com.ijuru.imibare.lang.NounAttributes;
 import com.ijuru.imibare.renderer.NumberRenderer;
+import org.junit.Ignore;
 
 /**
  * Helper class for unit testing
  */
+@Ignore
 public class TestUtils {
+
 	/**
 	 * Runs test cases from a CSV file
 	 * @param path the path of the file

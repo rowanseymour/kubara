@@ -19,18 +19,21 @@
 
 package com.ijuru.imibare.renderer.impl;
 
+import com.ijuru.imibare.test.TestUtils;
+import org.junit.Test;
+
 import java.io.IOException;
 
-import junit.framework.TestCase;
-
-import com.ijuru.imibare.TestUtils;
-
 /**
- * Test case for FrenchRenderer class
+ * Tests for {@link KinyarwandaNumberRenderer}
  */
-public class FrenchRendererTest extends TestCase {
+public class KinyarwandaNumberRendererTest {
 
-	public void testRender() throws IOException {
-		TestUtils.runCases("/data-fr.csv", new FrenchNumberRenderer());
+	/**
+	 * @see KinyarwandaNumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
+	 */
+	@Test
+	public void render() throws IOException {
+		TestUtils.runCases("/data-rw.csv", new KinyarwandaNumberRenderer());
 	}
 }

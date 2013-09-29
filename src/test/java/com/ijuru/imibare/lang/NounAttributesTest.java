@@ -19,15 +19,19 @@
 
 package com.ijuru.imibare.lang;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Test case for NounAttributes class
+ * Tests for {@link NounAttributes}
  */
-public class NounAttributesTest extends TestCase {
-	
-	public void testEquals() {
+public class NounAttributesTest {
+
+	/**
+	 * @see NounAttributes#equals(Object)
+	 */
+	@Test
+	public void equals_shouldCheckEquality() {
 		Assert.assertFalse(new NounAttributes().equals(null));
 		Assert.assertFalse(new NounAttributes().equals(new String("")));
 		Assert.assertTrue(new NounAttributes().equals(new NounAttributes()));
@@ -36,7 +40,11 @@ public class NounAttributesTest extends TestCase {
 		Assert.assertFalse(new NounAttributes(1, Gender.FEMALE).equals(new NounAttributes(1, Gender.MALE)));
 	}
 
-	public void testParse() {
+	/**
+	 * @see NounAttributes#parse(String)
+	 */
+	@Test
+	public void parse() {
 		Assert.assertEquals(new NounAttributes(), NounAttributes.parse(null));
 		Assert.assertEquals(new NounAttributes(), NounAttributes.parse(""));
 		Assert.assertEquals(new NounAttributes(1, Gender.UNSPECIFIED), NounAttributes.parse("c1"));

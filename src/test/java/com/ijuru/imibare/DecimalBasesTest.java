@@ -19,16 +19,17 @@
 
 package com.ijuru.imibare;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 
-import com.ijuru.imibare.DecimalBases;
+import static org.junit.Assert.*;
 
 /**
- * Test cases for DecimalBases class
+ * Tests for {@link DecimalBases}
  */
-public class DecimalBasesTest extends TestCase {
+public class DecimalBasesTest {
 
-	public void testConstructor() {
+	@Test
+	public void integration() {
 		// Number is zero
 		DecimalBases num = new DecimalBases(0, false);
 		assertFalse(num.negative);
@@ -90,8 +91,11 @@ public class DecimalBasesTest extends TestCase {
 		assertEquals(234, num.millions);
 		assertEquals(1, num.billions);
 	}
-	
-	public void testCalcValue() {
+
+	/**
+	 * @see DecimalBases#calcValue()
+	 */
+	public void calcValue() {
 		DecimalBases num = new DecimalBases(0, true);
 		assertEquals(0, num.calcValue());
 		

@@ -28,22 +28,30 @@ import com.ijuru.imibare.renderer.impl.KinyarwandaNumberRenderer;
 import com.ijuru.imibare.renderer.impl.KirundiNumberRenderer;
 import com.ijuru.imibare.renderer.NumberRenderer;
 
-import junit.framework.Assert;
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Tests for {@link NumberRendererFactory}
  */
-public class NumberRendererFactoryTest extends TestCase {
-	
-	public void testGetRenderer() throws UnsupportedLanguageException {
+public class NumberRendererFactoryTest {
+
+	/**
+	 * @see NumberRendererFactory#getRendererByLocale(java.util.Locale)
+	 */
+	@Test
+	public void getRenderer() throws UnsupportedLanguageException {
 		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("en")) instanceof EnglishNumberRenderer);
 		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("fr")) instanceof FrenchNumberRenderer);
 		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("rw")) instanceof KinyarwandaNumberRenderer);
 		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("rn")) instanceof KirundiNumberRenderer);
 	}
 
-	public void testRegisterRenderer() throws UnsupportedLanguageException {
+	/**
+	 * @see NumberRendererFactory#registerRenderer(com.ijuru.imibare.renderer.NumberRenderer)
+	 */
+	@Test
+	public void registerRenderer() throws UnsupportedLanguageException {
 		NumberRendererFactory.registerRenderer(new TestRenderer());
 		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("tt")) instanceof TestRenderer);
 	}
