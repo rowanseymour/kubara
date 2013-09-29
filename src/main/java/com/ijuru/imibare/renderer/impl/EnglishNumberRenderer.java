@@ -26,7 +26,7 @@ import java.util.Stack;
 
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.RendererUtils;
-import com.ijuru.imibare.lang.NounAttributes;
+import com.ijuru.imibare.lang.NounDescriptor;
 import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
@@ -66,10 +66,10 @@ public class EnglishNumberRenderer implements NumberRenderer {
 	}
 
 	/**
-	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
+	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
 	 */
 	@Override
-	public String render(long number, NounAttributes attributes) {
+	public String render(long number, NounDescriptor attributes) {
 		if (number == 0)
 			return ZERO;
 		

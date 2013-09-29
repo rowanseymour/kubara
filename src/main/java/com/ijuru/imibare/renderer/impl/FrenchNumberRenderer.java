@@ -28,7 +28,7 @@ import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.Gender;
 import com.ijuru.imibare.lang.Noun;
-import com.ijuru.imibare.lang.NounAttributes;
+import com.ijuru.imibare.lang.NounDescriptor;
 import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
@@ -66,10 +66,10 @@ public class FrenchNumberRenderer implements NumberRenderer {
 	}
 
 	/**
-	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
+	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
 	 */
 	@Override
-	public String render(long number, NounAttributes attributes) {
+	public String render(long number, NounDescriptor attributes) {
 		String form = renderInternal(number, 0, attributes);
 		
 		// Add negative suffix
@@ -86,7 +86,7 @@ public class FrenchNumberRenderer implements NumberRenderer {
 	 * @param attributes the noun attributes
 	 * @return the spoken form
 	 */
-	private String renderInternal(long number, int exponent, NounAttributes attributes) {
+	private String renderInternal(long number, int exponent, NounDescriptor attributes) {
 		if (number == 0)
 			return ZERO;
 		

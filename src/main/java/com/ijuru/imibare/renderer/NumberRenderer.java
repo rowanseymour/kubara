@@ -19,7 +19,7 @@
 
 package com.ijuru.imibare.renderer;
 
-import com.ijuru.imibare.lang.NounAttributes;
+import com.ijuru.imibare.lang.NounDescriptor;
 
 import java.util.Locale;
 
@@ -40,5 +40,5 @@ public interface NumberRenderer {
 	 * @param attributes noun attributes
 	 * @return the spoken form
 	 */
-	String render(long number, NounAttributes attributes);
+	String render(long number, NounDescriptor attributes);
 }

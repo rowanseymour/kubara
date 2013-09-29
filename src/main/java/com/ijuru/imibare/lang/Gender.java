@@ -24,10 +24,27 @@ package com.ijuru.imibare.lang;
  */
 public enum Gender {
 
-	UNSPECIFIED,
-	MALE,
-	FEMALE,
-	NEUTER;
+	MALE("m"),
+	FEMALE("f"),
+	NEUTER("n");
+
+	private String code;
+
+	/**
+	 * Constructs a gender value
+	 * @param code the string code
+	 */
+	Gender(String code) {
+		this.code = code;
+	}
+
+	/**
+	 * @see Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return code;
+	}
 	
 	/**
 	 * Parses a gender from a string
@@ -35,16 +52,11 @@ public enum Gender {
 	 * @return the gender
 	 */
 	public static Gender parse(String str) {
-		if (str != null && str.length() == 1) {
-			switch (str.toLowerCase().charAt(0)) {
-			case 'm':
-				return MALE;
-			case 'f':
-				return FEMALE;
-			case 'n':
-				return NEUTER;
+		for (Gender gender : values()) {
+			if (str.equals(gender.code)) {
+				return gender;
 			}
 		}
-		return UNSPECIFIED;
+		throw new IllegalArgumentException("Unable to parse " + str + " into a gender");
 	}
 }

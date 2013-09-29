@@ -26,7 +26,7 @@ import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.BantuNoun;
 import com.ijuru.imibare.lang.Gender;
-import com.ijuru.imibare.lang.NounAttributes;
+import com.ijuru.imibare.lang.NounDescriptor;
 
 /**
  * Abstract base class for number renderers for Rwanda-Rundi family of languages
@@ -37,12 +37,15 @@ public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
 	private static final String CONJ_BEFORE_VOWEL = " n'";
 	
 	/**
-	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
+	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
 	 */
 	@Override
-	public String render(long number, NounAttributes attributes) {
-		if (number == 0)
+	public String render(long number, NounDescriptor noun) {
+		if (number == 0) {
 			return getZeroWord();
+		}
+
+		int nounClass = noun.getClazz() != null ? noun.getClazz() : 0;
 		
 		// Break down number into bases used by Kinyarwanda and Kirundi
 		DecimalBases bases = new DecimalBases(number, false);
@@ -54,7 +57,7 @@ public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
 		components.add(makeComponent(getThousandNoun(), bases.thousands));
 		components.add(getHundreds()[bases.hundreds]);
 		components.add(getTens()[bases.tens]);
-		components.add(getOnes()[attributes.getClazz()][bases.ones]);
+		components.add(getOnes()[nounClass][bases.ones]);
 		
 		// Join components using conjunctions
 		return (bases.negative ? getNegativeWord() + " " : "") + join(components);
@@ -70,9 +73,9 @@ public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
 		if (count == 0)
 			return "";
 		else if (count == 1)
-			return base.getSingularForm() + " " + render(count, new NounAttributes(base.getSingularClazz(), Gender.UNSPECIFIED));
+			return base.getSingularForm() + " " + render(count, new NounDescriptor(base.getSingularClazz(), null));
 		else
-			return base.getPluralForm() + " " + render(count, new NounAttributes(base.getPluralClazz(), Gender.UNSPECIFIED));
+			return base.getPluralForm() + " " + render(count, new NounDescriptor(base.getPluralClazz(), null));
 	}
 
 	/**

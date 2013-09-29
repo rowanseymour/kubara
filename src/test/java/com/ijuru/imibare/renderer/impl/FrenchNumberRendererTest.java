@@ -30,7 +30,7 @@ import java.io.IOException;
 public class FrenchNumberRendererTest {
 
 	/**
-	 * @see FrenchNumberRenderer#render(long, com.ijuru.imibare.lang.NounAttributes)
+	 * @see FrenchNumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
 	 */
 	@Test
 	public void render() throws IOException {
