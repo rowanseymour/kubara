@@ -25,27 +25,38 @@ import java.util.List;
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.BantuNoun;
-import com.ijuru.imibare.lang.Gender;
-import com.ijuru.imibare.lang.NounDescriptor;
+import com.ijuru.imibare.lang.NounClassification;
 
 /**
  * Abstract base class for number renderers for Rwanda-Rundi family of languages
  */
-public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
+public abstract class BaseRwandaRundiNumberRenderer extends AbstractNumberRenderer {
 
 	private static final String CONJ_BEFORE_CONSONANT = " na ";
 	private static final String CONJ_BEFORE_VOWEL = " n'";
-	
+
+	private static List<NounClassification> supportedNounAttrs = new ArrayList<NounClassification>();
+
+	static {
+		for (int c = 1; c <= 16; ++c) {
+			supportedNounAttrs.add(new NounClassification(c));
+		}
+	}
+
 	/**
-	 * @see com.ijuru.imibare.renderer.NumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
+	 * @see NumberRenderer#getSupportedNounClassifications()
 	 */
 	@Override
-	public String render(long number, NounDescriptor noun) {
-		if (number == 0) {
-			return getZeroWord();
-		}
+	public List<NounClassification> getSupportedNounClassifications() {
+		return supportedNounAttrs;
+	}
 
-		int nounClass = noun.getClazz() != null ? noun.getClazz() : 0;
+	/**
+	 * @see AbstractNumberRenderer#renderInternal(long, com.ijuru.imibare.lang.NounClassification)
+	 */
+	@Override
+	public String renderInternal(long number, NounClassification classification) {
+		int nounClass = classification != null ? classification.getNounClass() : 0;
 		
 		// Break down number into bases used by Kinyarwanda and Kirundi
 		DecimalBases bases = new DecimalBases(number, false);
@@ -73,9 +84,9 @@ public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
 		if (count == 0)
 			return "";
 		else if (count == 1)
-			return base.getSingularForm() + " " + render(count, new NounDescriptor(base.getSingularClazz(), null));
+			return base.getSingularForm() + " " + render(count, new NounClassification(base.getSingularClazz()));
 		else
-			return base.getPluralForm() + " " + render(count, new NounDescriptor(base.getPluralClazz(), null));
+			return base.getPluralForm() + " " + render(count, new NounClassification(base.getPluralClazz()));
 	}
 
 	/**
@@ -126,12 +137,13 @@ public abstract class BaseRwandaRundiNumberRenderer implements NumberRenderer {
 	 * @return the noun
 	 */
 	protected abstract String getNegativeWord();
-	
+
 	/**
 	 * Gets the word used for zero
+	 * @param nounClassification the noun classification
 	 * @return the noun
 	 */
-	protected abstract String getZeroWord();
+	protected abstract String getZeroWord(NounClassification nounClassification);
 	
 	/**
 	 * Gets the noun used for thousands

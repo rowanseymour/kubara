@@ -20,6 +20,7 @@
 package com.ijuru.imibare.renderer.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Stack;
@@ -28,13 +29,14 @@ import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.RendererUtils;
 import com.ijuru.imibare.lang.Gender;
 import com.ijuru.imibare.lang.Noun;
-import com.ijuru.imibare.lang.NounDescriptor;
+import com.ijuru.imibare.lang.NounClassification;
+import com.ijuru.imibare.renderer.AbstractNumberRenderer;
 import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
  * Number renderer for French language
  */
-public class FrenchNumberRenderer implements NumberRenderer {
+public class FrenchNumberRenderer extends AbstractNumberRenderer {
 	
 	private static final String[] ONES = {
 		"", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", 
@@ -66,11 +68,21 @@ public class FrenchNumberRenderer implements NumberRenderer {
 	}
 
 	/**
-	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
+	 * @see NumberRenderer#getSupportedNounClassifications()
 	 */
 	@Override
-	public String render(long number, NounDescriptor attributes) {
-		String form = renderInternal(number, 0, attributes);
+	public List<NounClassification> getSupportedNounClassifications() {
+		return Arrays.asList(NounClassification.MALE, NounClassification.FEMALE);
+	}
+
+	/**
+	 * @see com.ijuru.imibare.renderer.AbstractNumberRenderer#renderInternal(long, com.ijuru.imibare.lang.NounClassification)
+	 */
+	@Override
+	public String renderInternal(long number, NounClassification classification) {
+		Gender gender = classification != null ? classification.getGender() : Gender.MALE;
+
+		String form = renderRecursive(number, 0, gender);
 		
 		// Add negative suffix
 		if (number < 0)
@@ -83,13 +95,10 @@ public class FrenchNumberRenderer implements NumberRenderer {
 	 * Renders a component of this number
 	 * @param number the number
 	 * @param exponent the exponent
-	 * @param attributes the noun attributes
+	 * @param gender the gender
 	 * @return the spoken form
 	 */
-	private String renderInternal(long number, int exponent, NounDescriptor attributes) {
-		if (number == 0)
-			return ZERO;
-		
+	private String renderRecursive(long number, int exponent, Gender gender) {
 		// Break down number into bases used by French
 		DecimalBases bases = new DecimalBases(number, true);
 		
@@ -107,7 +116,7 @@ public class FrenchNumberRenderer implements NumberRenderer {
 		components.add(makeComponent(HUNDRED, 2, bases.hundreds) + (addS ? "s" : ""));
 		
 		// If number ends with a 1, then add -e to feminize (i.e. une)
-		boolean feminize = exponent == 0 && attributes != null && attributes.getGender() == Gender.FEMALE && bases.ones == 1;
+		boolean feminize = exponent == 0 && gender == Gender.FEMALE && bases.ones == 1;
 		
 		components.add(ONES[upTo100] + (feminize ? "e" : ""));
 				
@@ -130,9 +139,9 @@ public class FrenchNumberRenderer implements NumberRenderer {
 			return base.getSingularForm();
 		// But do put in front of million etc
 		else if (count == 1)
-			return renderInternal(count, exponent, null) + " " + base.getSingularForm();
+			return renderRecursive(count, exponent, null) + " " + base.getSingularForm();
 		
-		return renderInternal(count, exponent, null) + " " + base.getPluralForm();
+		return renderRecursive(count, exponent, null) + " " + base.getPluralForm();
 	}
 	
 	/**
@@ -157,5 +166,13 @@ public class FrenchNumberRenderer implements NumberRenderer {
 		parts.add(compMinor);
 		
 		return RendererUtils.join(RendererUtils.removeEmpty(parts), " ");
+	}
+
+	/**
+	 * @see AbstractNumberRenderer#getZeroWord(com.ijuru.imibare.lang.NounClassification)
+	 */
+	@Override
+	protected String getZeroWord(NounClassification classification) {
+		return ZERO;
 	}
 }

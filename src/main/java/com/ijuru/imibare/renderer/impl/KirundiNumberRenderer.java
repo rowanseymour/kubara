@@ -20,6 +20,7 @@
 package com.ijuru.imibare.renderer.impl;
 
 import com.ijuru.imibare.lang.BantuNoun;
+import com.ijuru.imibare.lang.NounClassification;
 import com.ijuru.imibare.renderer.BaseRwandaRundiNumberRenderer;
 
 import java.util.Locale;
@@ -117,7 +118,7 @@ public class KirundiNumberRenderer extends BaseRwandaRundiNumberRenderer {
 	}
 	
 	@Override
-	protected String getZeroWord() {
+	protected String getZeroWord(NounClassification nounClassification) {
 		return ZERO;
 	}
 	

@@ -20,19 +20,21 @@
 package com.ijuru.imibare.renderer.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Stack;
 
 import com.ijuru.imibare.DecimalBases;
 import com.ijuru.imibare.RendererUtils;
-import com.ijuru.imibare.lang.NounDescriptor;
+import com.ijuru.imibare.lang.NounClassification;
+import com.ijuru.imibare.renderer.AbstractNumberRenderer;
 import com.ijuru.imibare.renderer.NumberRenderer;
 
 /**
  * Number renderer for English language
  */
-public class EnglishNumberRenderer implements NumberRenderer {
+public class EnglishNumberRenderer extends AbstractNumberRenderer {
 	
 	private static final String CONJ_COMPONENT = " ";
 	private static final String CONJ_PART = " and ";
@@ -66,10 +68,18 @@ public class EnglishNumberRenderer implements NumberRenderer {
 	}
 
 	/**
-	 * @see NumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
+	 * @see NumberRenderer#getSupportedNounClassifications()
 	 */
 	@Override
-	public String render(long number, NounDescriptor attributes) {
+	public List<NounClassification> getSupportedNounClassifications() {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @see AbstractNumberRenderer#renderInternal(long, com.ijuru.imibare.lang.NounClassification)
+	 */
+	@Override
+	public String renderInternal(long number, NounClassification classification) {
 		if (number == 0)
 			return ZERO;
 		
@@ -135,5 +145,13 @@ public class EnglishNumberRenderer implements NumberRenderer {
 		parts.add(compMinor);
 		
 		return RendererUtils.join(RendererUtils.removeEmpty(parts), CONJ_PART);
+	}
+
+	/**
+	 * @see AbstractNumberRenderer#getZeroWord(com.ijuru.imibare.lang.NounClassification)
+	 */
+	@Override
+	protected String getZeroWord(NounClassification classification) {
+		return ZERO;
 	}
 }

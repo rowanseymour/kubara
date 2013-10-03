@@ -19,8 +19,9 @@
 
 package com.ijuru.imibare.renderer;
 
-import com.ijuru.imibare.lang.NounDescriptor;
+import com.ijuru.imibare.lang.NounClassification;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -35,10 +36,16 @@ public interface NumberRenderer {
 	Locale getLocale();
 
 	/**
+	 * Gets the list of noun classifications that are supported by this renderer
+	 * @return the noun classifications
+	 */
+	List<NounClassification> getSupportedNounClassifications();
+
+	/**
 	 * Renders the number into it's spoken form
 	 * @param number the number
-	 * @param attributes noun attributes
+	 * @param classification noun classification
 	 * @return the spoken form
 	 */
-	String render(long number, NounDescriptor attributes);
+	String render(long number, NounClassification classification);
 }

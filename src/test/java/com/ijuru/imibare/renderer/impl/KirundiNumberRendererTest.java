@@ -30,7 +30,7 @@ import java.io.IOException;
 public class KirundiNumberRendererTest {
 
 	/**
-	 * @see KirundiNumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
+	 * @see KirundiNumberRenderer#render(long, com.ijuru.imibare.lang.NounClassification)
 	 */
 	@Test
 	public void render() throws IOException {

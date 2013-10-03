@@ -30,7 +30,7 @@ import org.junit.Test;
 public class EnglishNumberRendererTest {
 
 	/**
-	 * @see EnglishNumberRenderer#render(long, com.ijuru.imibare.lang.NounDescriptor)
+	 * @see EnglishNumberRenderer#render(long, com.ijuru.imibare.lang.NounClassification)
 	 */
 	@Test
 	public void render() throws IOException {

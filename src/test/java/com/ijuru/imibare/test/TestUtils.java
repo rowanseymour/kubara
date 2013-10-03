@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
-import com.ijuru.imibare.lang.NounDescriptor;
+import com.ijuru.imibare.lang.NounClassification;
 import junit.framework.Assert;
 
 import com.ijuru.imibare.renderer.NumberRenderer;
@@ -53,15 +53,15 @@ public class TestUtils {
 				String[] parts = line.trim().split(",");
 				long number = Long.parseLong(parts[0].trim());
 				
-				NounDescriptor attributes;
+				NounClassification attributes;
 				String expected;
 				
 				if (parts.length == 3) {
-					attributes = NounDescriptor.parse(parts[1].trim());
+					attributes = NounClassification.parse(parts[1].trim());
 					expected = parts[2].trim();
 				}
 				else {
-					attributes = new NounDescriptor();
+					attributes = null;
 					expected = parts[1].trim();
 				}
 				

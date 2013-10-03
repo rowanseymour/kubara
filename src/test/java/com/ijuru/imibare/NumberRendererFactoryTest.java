@@ -19,9 +19,11 @@
 
 package com.ijuru.imibare;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
-import com.ijuru.imibare.lang.NounDescriptor;
+import com.ijuru.imibare.lang.NounClassification;
 import com.ijuru.imibare.renderer.impl.EnglishNumberRenderer;
 import com.ijuru.imibare.renderer.impl.FrenchNumberRenderer;
 import com.ijuru.imibare.renderer.impl.KinyarwandaNumberRenderer;
@@ -75,7 +77,12 @@ public class NumberRendererFactoryTest {
 		}
 
 		@Override
-		public String render(long number, NounDescriptor attributes) {
+		public List<NounClassification> getSupportedNounClassifications() {
+			return Collections.singletonList(NounClassification.MALE);
+		}
+
+		@Override
+		public String render(long number, NounClassification attributes) {
 			return "test";
 		}
 	}
