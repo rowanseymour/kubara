@@ -21,24 +21,29 @@ package com.ijuru.imibare.renderer;
 
 import com.ijuru.imibare.lang.NounClassification;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 import java.util.Locale;
 
 /**
  * Interface for a basic number renderer
  */
+@XmlRootElement
 public interface NumberRenderer {
 
 	/**
 	 * Gets the locale of this renderer
 	 * @return the locale
 	 */
+	@XmlElement
 	Locale getLocale();
 
 	/**
 	 * Gets the list of noun classifications that are supported by this renderer
 	 * @return the noun classifications
 	 */
+	@XmlElement(name = "supports")
 	List<NounClassification> getSupportedNounClassifications();
 
 	/**
