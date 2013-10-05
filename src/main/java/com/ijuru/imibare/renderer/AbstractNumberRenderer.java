@@ -23,6 +23,14 @@ public abstract class AbstractNumberRenderer implements NumberRenderer {
 	}
 
 	/**
+	 * Convenience method to get the name of the language
+	 * @return the language name
+	 */
+	public String getLanguageName() {
+		return getLocale().getDisplayLanguage();
+	}
+
+	/**
 	 * Performs internal rendering of the given number
 	 * @param number the number
 	 * @param classification the noun classification
