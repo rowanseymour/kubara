@@ -1,4 +1,4 @@
-#Imibare
+#Kubara
 
 This is a library for rendering numbers as text in their spoken forms. So far only it supports English, French, Kinyarwanda and Kirundi.
 

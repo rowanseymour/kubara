@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.ijuru</groupId>
-	<artifactId>imibare</artifactId>
-	<version>1.0</version>
+	<artifactId>kubara</artifactId>
+	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
-	<name>Imibare</name>
+	<name>Kubara</name>
 	<description>Number rendering library for English, French, Kinyarwanda and Kirundi</description>
 
 	<developers>
@@ -18,9 +18,9 @@
 	</developers>
 	
 	<scm>
-		<connection>scm:git:git@github.com:rowanseymour/imibare.git</connection>
-		<developerConnection>scm:git:git@github.com:rowanseymour/imibare.git</developerConnection>
-		<url>scm:git:git@github.com:rowanseymour/imibare.git</url>
+		<connection>scm:git:git@github.com:rowanseymour/kubara.git</connection>
+		<developerConnection>scm:git:git@github.com:rowanseymour/kubara.git</developerConnection>
+		<url>scm:git:git@github.com:rowanseymour/kubara.git</url>
 	</scm>
 
 	<properties>
