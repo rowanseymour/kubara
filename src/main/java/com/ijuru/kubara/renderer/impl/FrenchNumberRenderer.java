@@ -64,7 +64,7 @@ public class FrenchNumberRenderer extends AbstractNumberRenderer {
 	 */
 	@Override
 	public Locale getLocale() {
-		return new Locale("fr");
+		return Locale.of("fr");
 	}
 
 	/**

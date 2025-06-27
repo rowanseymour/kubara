@@ -19,6 +19,7 @@
 
 package com.ijuru.kubara;
 
+import java.io.Serial;
 import java.util.Locale;
 
 /**
@@ -26,6 +27,7 @@ import java.util.Locale;
  */
 public class UnsupportedLanguageException extends Exception {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 	
 	/**
