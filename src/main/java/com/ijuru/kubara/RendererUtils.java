@@ -43,9 +43,9 @@ public class RendererUtils {
 	 * @return the new list with no empty values
 	 */
 	public static List<String> removeEmpty(List<String> strings) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		for (String string : strings) {
-			if (string.length() > 0)
+			if (!string.isEmpty())
 				result.add(string);
 		}
 		return result;
@@ -58,7 +58,7 @@ public class RendererUtils {
 	 * @return the joined string
 	 */
 	public static String join(List<String> strings, String delimiter) {
-		if (strings.size() == 0)
+		if (strings.isEmpty())
 			return "";
 		
 		StringBuilder builder = new StringBuilder(strings.get(0));

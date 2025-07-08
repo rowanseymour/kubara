@@ -43,10 +43,10 @@ public class NumberRendererFactoryTest {
 	 */
 	@Test
 	public void getRenderer() throws UnsupportedLanguageException {
-		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("en")) instanceof EnglishNumberRenderer);
-		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("fr")) instanceof FrenchNumberRenderer);
-		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("rw")) instanceof KinyarwandaNumberRenderer);
-		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("rn")) instanceof KirundiNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(Locale.of("en","","")) instanceof EnglishNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(Locale.of("fr","","")) instanceof FrenchNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(Locale.of("rw","","")) instanceof KinyarwandaNumberRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(Locale.of("rn","","")) instanceof KirundiNumberRenderer);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class NumberRendererFactoryTest {
 	 */
 	@Test
 	public void getAllRenderers() {
-		Assert.assertTrue(NumberRendererFactory.getAllRenderers().size() > 0);
+        Assert.assertFalse(NumberRendererFactory.getAllRenderers().isEmpty());
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class NumberRendererFactoryTest {
 	@Test
 	public void registerRenderer() throws UnsupportedLanguageException {
 		NumberRendererFactory.registerRenderer(new TestRenderer());
-		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(new Locale("tt")) instanceof TestRenderer);
+		Assert.assertTrue(NumberRendererFactory.getRendererByLocale(Locale.of("tt")) instanceof TestRenderer);
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class NumberRendererFactoryTest {
 
 		@Override
 		public Locale getLocale() {
-			return new Locale("tt");
+			return Locale.of("tt");
 		}
 
 		@Override

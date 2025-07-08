@@ -64,7 +64,7 @@ public class EnglishNumberRenderer extends AbstractNumberRenderer {
 	 */
 	@Override
 	public Locale getLocale() {
-		return new Locale("en");
+		return Locale.of("en");
 	}
 
 	/**
